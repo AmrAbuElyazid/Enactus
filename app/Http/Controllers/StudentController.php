@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class StudentController extends Controller
+{
+    public function getAccountSettings()
+    {
+        return view('student.account', [
+            'student' => Auth::guard('student')->user(),
+        ]);
+    }
+
+    public function updateAccountSettings(Request $request) {
+        $this->validate($request, [
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|unique:students,email,'.Auth::guard('student')->user()->id,
+            // 'password' =>'required|min:6|confirmed',
+        ]);
+        // dd('here');
+        Auth::guard('student')->user()->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'date_of_birth' => $request->date_of_birth,
+            // 'password' => bcrypt($data['password']),
+        ]);
+
+        return response()->json([
+            'errror' => 'false',
+            'message' => 'Account Settings Updated Successfully',
+        ], 200);
+    }
+}

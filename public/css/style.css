@@ -15,7 +15,7 @@ body {
   font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
   color: #3e454c;
-  background-color: #ffffff;
+  background-color: #F5F8FA;
 }
 body::after {
   clear: both;
@@ -61,7 +61,7 @@ Main Page Content
 @media only screen and (min-width: 768px) {
   .cd-main-content .content-wrapper {
     margin-left: 110px;
-    padding-top: 55px;
+    padding-top: 100px;
   }
   .cd-main-content .content-wrapper h1 {
     padding: 4em 0;
@@ -267,7 +267,7 @@ Header
     left: 1em;
   }
   .cd-search form, .cd-search input {
-    height: 100%;
+    height: 97%;
     width: 100%;
   }
   .cd-search input {
