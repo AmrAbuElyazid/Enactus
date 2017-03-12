@@ -7,15 +7,25 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
+
     /**
      * Get Account Settings
      * @return \Illuminate\Http\Response
      */
+    public function showAccountSettingsPage()
+    {
+        return view('student.account');   
+    }
+
+    /**
+     * Return Account Settings
+     * @return Json
+     */
     public function getAccountSettings()
     {
-        return view('student.account', [
+        return response()->json([
             'student' => Auth::guard('student')->user(),
-        ]);
+        ], 200);
     }
 
     /**

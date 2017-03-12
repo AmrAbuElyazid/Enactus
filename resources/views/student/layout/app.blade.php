@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/css/style.css"> <!-- Resource style -->
     <link href="/css/app.css" rel="stylesheet">
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
     <script src="/js/modernizr.js"></script> <!-- Modernizr -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -141,8 +142,10 @@
             @yield('content')
         </div> <!-- .content-wrapper -->
     </main> <!-- .cd-main-content -->
-<script src="/js/jquery-2.1.4.js"></script>
-<script src="/js/jquery.menu-aim.js"></script>
-<script src="/js/main.js"></script> <!-- Resource jQuery -->
+    <script src="/js/jquery-2.1.4.js"></script>
+    <script src="/js/jquery.menu-aim.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/main.js"></script> <!-- Resource jQuery -->
+    @yield('scripts')
 </body>
 </html>
