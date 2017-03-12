@@ -1,4 +1,20 @@
 app.controller('AccountController', ['$scope', '$http', function($scope, $http) {
+	/**
+	 * Var to indicate progress
+	 * @type {Boolean}
+	 */
+	$scope.progress = false;
+	
+	/**
+	 * Var to indicate suceess
+	 * @type {Boolean}
+	 */
+	$scope.success = false;
+
+	/**
+	 * student data
+	 * @type {Object}
+	 */
 	$scope.student = {
 		first_name: null,
 		second_name: null,
@@ -8,6 +24,9 @@ app.controller('AccountController', ['$scope', '$http', function($scope, $http) 
 		date_of_birth: null,
 	};
 
+	/**
+	 * self-invoked function to load student data 
+	 */
  	(function () {
  		$http({
  			method: 'GET',
@@ -26,6 +45,40 @@ app.controller('AccountController', ['$scope', '$http', function($scope, $http) 
  	})();
 
 
+ 	/**
+ 	 * Update Student Account Settingd
+ 	 * @return {json}
+ 	 */
+ 	$scope.updateAccountSettings = function() {
+		$scope.progress = true;
+		var date = new Date(new Date($scope.student.date_of_birth).getTime());
+
+ 		$http({
+ 			method: 'PATCH',
+ 			url: '/student/settings/update',
+ 			data: {
+ 				first_name: $scope.student.first_name,
+ 				last_name: $scope.student.last_name,
+ 				email: $scope.student.email,
+ 				phone_number: $scope.student.phone_number,
+ 				address: $scope.student.address,
+ 				date_of_birth: date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' 00:00:00',
+ 			}
+ 		}).then(function success(response) {
+ 			console.log('updated');
+ 			$scope.progress = false;
+ 			$scope.success = true;
+ 		}, function error() {
+ 			console.log(response);
+ 		});
+ 	};
+
+
+ 	/**
+ 	 * Format Date To show in html
+ 	 * @param  {mysql date} mySQLDate
+ 	 * @return {date}       date compitiable with html date <input>
+ 	 */
  	function formatDate(mySQLDate)
  	{
  		new Date(Date.parse(mySQLDate.replace('-','/','g')));

@@ -161,6 +161,21 @@ $duration: 1.4s;
 }
 }
 
+    .material-alert {
+  border-radius: 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.298039);
+  font-weight: 700;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+.material-alert {
+  background-color: #eee;
+  color: #000;
+}
+.material-alert_success {
+  background-color: #68c368;
+  color: #fff;
+}
 .settings button {
     height: 50px;
     width: 100%;
@@ -172,6 +187,7 @@ $duration: 1.4s;
         letter-spacing: 5px;
     }
     svg {
-        display: none;
+        // display: none;
     }
 }
+
