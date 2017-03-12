@@ -28,7 +28,8 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/password/reset/{token}', 'StudentAuth\ResetPasswordController@showResetForm');
 
     Route::group(['middleware' => 'student'], function () {
-        Route::get('/settings', 'StudentController@getAccountSettings')->name('account.settings');
+        Route::get('/settings', 'StudentController@showAccountSettingsPage')->name('account.settings');
+        Route::get('/settings/get', 'StudentController@getAccountSettings')->name('get.account.settings');
         Route::patch('/settings/update', 'StudentController@updateAccountSettings')->name('account.update');
     });
 });

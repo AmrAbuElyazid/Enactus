@@ -18,7 +18,7 @@ class RedirectIfNotStudent
 	public function handle($request, Closure $next, $guard = 'student')
 	{
 	    if (!Auth::guard($guard)->check()) {
-	        return redirect('student/login');
+	        return redirect('/');
 	    }
 
 	    return $next($request);
