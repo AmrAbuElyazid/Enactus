@@ -5,7 +5,6 @@
 	<div class="alert material-alert material-alert_success" ng-if="success">Well done! You successfully read this important alert message.</div>
 		<div class="settings">
 			<form>
-				{{-- {{ method_field('patch') }} --}}
 				{{ csrf_field() }}
 				<div class="row">
 					<div class="group col-md-9 col-md-offset-1">
