@@ -1,14 +1,19 @@
 <?php
 
 Route::get('/', function () {
+    if (Auth::guard('teacher')->check() == true) {
+        return redirect(route('teacher.home'));
+    }
+    if (Auth::guard('student')->check() == true) {
+        return redirect(route('student.home')) ;
+    }
+
     return view('welcome');
-});
+})->name('welcome');
 
 Route::group(['prefix' => 'teacher'], function () {
     Route::post('/login', 'TeacherAuth\LoginController@login')->name('teacher.login');
-    
     Route::post('/logout', 'TeacherAuth\LoginController@logout')->name('teacher.logout');
-
     Route::post('/register', 'TeacherAuth\RegisterController@register')->name('teacher.register');
 
     Route::post('/password/email', 'TeacherAuth\ForgotPasswordController@sendResetLinkEmail');
@@ -28,6 +33,7 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/password/reset/{token}', 'StudentAuth\ResetPasswordController@showResetForm');
 
     Route::group(['middleware' => 'student'], function () {
+        
         Route::get('/settings', 'StudentController@showAccountSettingsPage')->name('account.settings');
         Route::get('/settings/get', 'StudentController@getAccountSettings')->name('get.account.settings');
         Route::patch('/settings/update', 'StudentController@updateAccountSettings')->name('account.update');

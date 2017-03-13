@@ -6,6 +6,9 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 .settings {
     form {
+        .col-md-6{
+            margin-top: 20px;
+        }
         .group {
             position: relative;
             margin-bottom: 45px;

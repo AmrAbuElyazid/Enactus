@@ -2,7 +2,7 @@
 @section('content')
 <div class="container" ng-controller="AccountController">
 	<div class="row">
-	<div class="alert material-alert material-alert_success" ng-if="success">Well done! You successfully read this important alert message.</div>
+	<div class="alert material-alert material-alert_success" ng-if="success">You successfully updated your account settings.</div>
 		<div class="settings">
 			<form>
 				{{ csrf_field() }}
@@ -13,7 +13,6 @@
 							<span class="highlight"></span>
 							<span class="bar"></span>
 							<label>First Name</label>
-							
 						</div>
 						<div class="col-md-6">
 							<input type="text" name="last_name" ng-model="student.last_name" required>
