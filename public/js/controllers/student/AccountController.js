@@ -1,4 +1,4 @@
-app.controller('AccountController', ['$scope', '$http', function($scope, $http) {
+app.controller('StudentAccountController', ['$scope', '$http', function($scope, $http) {
 	/**
 	 * Var to indicate progress
 	 * @type {Boolean}

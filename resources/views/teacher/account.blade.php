@@ -1,6 +1,6 @@
-@extends('student.layout.app')
+@extends('teacher.layout.app')
 @section('content')
-<div class="container" ng-controller="StudentAccountController">
+<div class="container" ng-controller="AccountController">
 	<div class="row">
 	<div class="alert material-alert material-alert_success" ng-if="success">You successfully updated your account settings.</div>
 		<div class="settings">
@@ -9,13 +9,13 @@
 				<div class="row">
 					<div class="group col-md-9 col-md-offset-1">
 						<div class="col-md-6">
-							<input type="text" name="first_name" ng-model="student.first_name" required>
+							<input type="text" name="first_name" ng-model="teacher.first_name" required>
 							<span class="highlight"></span>
 							<span class="bar"></span>
 							<label>First Name</label>
 						</div>
 						<div class="col-md-6">
-							<input type="text" name="last_name" ng-model="student.last_name" required>
+							<input type="text" name="last_name" ng-model="teacher.last_name" required>
 							<span class="highlight"></span>
 							<span class="bar"></span>
 							<label>Last Name</label>
@@ -24,7 +24,7 @@
 				</div>
 				
 				<div class="group col-md-9 col-md-offset-1">
-					<input type="email" name="email" ng-model="student.email" required>
+					<input type="email" name="email" ng-model="teacher.email" required>
 					<span class="highlight"></span>
 					<span class="bar"></span>
 					<label>Email</label>
@@ -33,14 +33,14 @@
 				<div class="row">
 					<div class="group col-md-9 col-md-offset-1">
 						<div class="col-md-6">
-							<input type="text" name="phone_number" ng-model="student.phone_number" required>
+							<input type="text" name="phone_number" ng-model="teacher.phone_number" required>
 							<span class="highlight"></span>
 							<span class="bar"></span>
 							<label>Phone Number</label>
 							
 						</div>
 						<div class="col-md-6">
-							<input type="text" name="address" ng-model="student.address" required>
+							<input type="text" name="address" ng-model="teacher.address" required>
 							<span class="highlight"></span>
 							<span class="bar"></span>
 							<label>Address</label>
@@ -48,7 +48,7 @@
 					</div>
 				</div>
 				<div class="group col-md-9 col-md-offset-1">
-					<input type="Date" name="date_of_birth" ng-model="student.date_of_birth" required> 
+					<input type="Date" name="date_of_birth" ng-model="teacher.date_of_birth" required> 
 					<span class="highlight"></span>
 					<span class="bar"></span>
 					<label>Date Of Birth</label>
@@ -69,5 +69,5 @@
 @endsection
 
 @section('scripts')
-	<script src="/js/controllers/student/AccountController.js"></script>
+	<script src="/js/controllers/teacher/AccountController.js"></script>
 @endsection

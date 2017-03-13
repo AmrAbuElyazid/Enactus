@@ -20,6 +20,14 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::post('/password/reset', 'TeacherAuth\ResetPasswordController@reset');
     Route::get('/password/reset', 'TeacherAuth\ForgotPasswordController@showLinkRequestForm');
     Route::get('/password/reset/{token}', 'TeacherAuth\ResetPasswordController@showResetForm');
+
+
+    Route::group(['middleware' => 'teacher'], function () {
+        Route::get('/settings', 'TeacherController@showAccountSettingsPage')->name('teacher.account.settings');
+        Route::get('/settings/get', 'TeacherController@getAccountSettings')->name('teacher.get.account.settings');
+        Route::patch('/settings/update', 'TeacherController@updateAccountSettings')->name('teacher.account.update');
+    });
+
 });
 
 Route::group(['prefix' => 'student'], function () {
@@ -33,9 +41,8 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/password/reset/{token}', 'StudentAuth\ResetPasswordController@showResetForm');
 
     Route::group(['middleware' => 'student'], function () {
-        
-        Route::get('/settings', 'StudentController@showAccountSettingsPage')->name('account.settings');
-        Route::get('/settings/get', 'StudentController@getAccountSettings')->name('get.account.settings');
-        Route::patch('/settings/update', 'StudentController@updateAccountSettings')->name('account.update');
+        Route::get('/settings', 'StudentController@showAccountSettingsPage')->name('student.account.settings');
+        Route::get('/settings/get', 'StudentController@getAccountSettings')->name('student.get.account.settings');
+        Route::patch('/settings/update', 'StudentController@updateAccountSettings')->name('student.account.update');
     });
 });

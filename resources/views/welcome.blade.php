@@ -53,7 +53,15 @@
                             </form>
                         </div>
                         <div class="main signup">
-                            <form class="cbp-mc-form">
+                            <pre>
+                                @if($errors)
+                                   @foreach ($errors->all() as $error)
+                                      <div>{{ $error }}</div>
+                                  @endforeach
+                                @endif
+                            </pre>
+                            <form class="cbp-mc-form" action="{{ route('teacher.register') }}" method="POST">
+                                {{ csrf_field() }}
                                 <div class="cbp-mc-column">
                                     <label for="first_name">First Name</label>
                                     <input type="text" id="first_name" name="first_name" placeholder="Jonathan">
@@ -63,22 +71,36 @@
 
                                     <label for="email">Email Address</label>
                                     <input type="email" id="email" name="email" placeholder="jon@doe.com">
+
+                                    <label for="phone_numbers">Phone Number</label>
+                                    <input type="text" id="phone_numbers" name="phone_number" placeholder="+351 999 999">
+    
                                 </div>
 
                                 <div class="cbp-mc-column">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="text" id="phone" name="phone" placeholder="+351 999 999">
+                                    <label for="">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="**********" required>
+
+                                    
+                                    <label for="password_confirmation">Confirm Password</label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="**********" required>
 
                                     <label for="address">Address</label>
                                     <input type="text" id="address" name="address" placeholder="Cairo, Egypt">
+
+                                    <label for="interests">Your Interests</label>
+                                    <textarea id="interests" name="interests"></textarea>
                                 </div>
+
                                 <div class="cbp-mc-column">
-                                    <label>What Is Your Talent</label>
-                                    <select id="talent" name="talent">
-                                        <option>Choose a talent</option>
-                                        <option>Ninja silence</option>
-                                        <option>Sumo power</option>
-                                        <option>Samurai precision</option>
+                                    <label>Talent</label>
+                                    <input type="text" name="talent" placeholder="What will you teach">
+                                    <label>Proficiency</label>
+                                    <select id="proficiency" name="proficiency">
+                                        <option>Choose</option>
+                                        <option>Beginner</option>
+                                        <option>Intermediate</option>
+                                        <option>Expert</option>
                                     </select>
 
                                     <label for="comment">Leave A Comment</label>

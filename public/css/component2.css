@@ -204,7 +204,7 @@ body {
 
 /* Inner page content */
 .page-inner {
-	padding: 2em;
+	/* padding: 2em; */
 }
 
 .page-inner section {

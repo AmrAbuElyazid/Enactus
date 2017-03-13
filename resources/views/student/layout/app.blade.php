@@ -58,9 +58,12 @@
 
                     <ul>
 
-                        <li><a href="#0">My Account</a></li>
-                        <li><a href="{{ route('account.settings') }}">Edit Account</a></li>
-                        <li><a href="#0">Logout</a></li>
+                        <li><a href="{{ route('student.account.settings') }}">Account Settings</a></li>
+                        <li><a href="#" id="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Logout</a></li>
+                        
+                        <form action="{{ route('student.logout') }}" id="logout-form" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </ul>
                 </li>
             </ul>
