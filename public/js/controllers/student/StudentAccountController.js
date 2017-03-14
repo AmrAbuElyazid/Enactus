@@ -1,3 +1,4 @@
+var app = angular.module('app', ['ngMaterial', 'ngMessages', 'ngAria', 'naif.base64']);
 app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog) {
     /**
      * Var to indicate progress

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\UploadImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
-
+    use UploadImage;
     /**
      * Get Account Settings
      * @return \Illuminate\Http\Response
@@ -24,7 +25,7 @@ class TeacherController extends Controller
     public function getAccountSettings()
     {
         return response()->json([
-            'student' => Auth::guard('teacher')->user(),
+            'teacher' => Auth::guard('teacher')->user(),
         ], 200);
     }
 
@@ -34,6 +35,11 @@ class TeacherController extends Controller
      * @return json
      */
     public function updateAccountSettings(Request $request) {
+        // dd($request->all());
+        if (is_array($request['photo'])) {
+            $request['photo'] = $this->upload($request['photo'], 'business', 'base64');
+        }
+        
         $this->validate($request, [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
@@ -45,8 +51,13 @@ class TeacherController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
+            'photo' => $request->photo,
             'address' => $request->address,
             'date_of_birth' => $request->date_of_birth,
+            'address' => $request->address,
+            'interests' => $request->interests,
+            'talent' => $request->talent,
+            'proficiency' => $request->proficiency,
         ]);
 
         return response()->json([

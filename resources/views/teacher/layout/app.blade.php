@@ -17,7 +17,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Student|Dashboard') }}</title>
-
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
     <!-- Styles -->
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
@@ -145,8 +145,18 @@
             @yield('content')
         </div> <!-- .content-wrapper -->
     </main> <!-- .cd-main-content -->
+    
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script> 
+
     <script src="/js/jquery-2.1.4.js"></script>
     <script src="/js/jquery.menu-aim.js"></script>
+
     <script src="/js/app.js"></script>
     <script src="/js/main.js"></script> <!-- Resource jQuery -->
     @yield('scripts')

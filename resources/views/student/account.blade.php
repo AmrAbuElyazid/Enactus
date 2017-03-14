@@ -55,7 +55,7 @@
 					<label>Address</label>
 					<input md-maxlength="200" required name="address" ng-model="student.address" />
 					<div class="hint" ng-if="showHints">Tell us what is your address!</div>
-					<div ng-messages="StudentForm.name.$error" ng-if="!showHints">
+					<div ng-messages="StudentForm.address.$error" ng-if="!showHints">
 						<div ng-message="required">Address is requireed</div>
 						<div ng-message="md-maxlength">The name has to be less than 200 characters long.</div>
 					</div>
