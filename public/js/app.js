@@ -1,1 +1,1 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['ngMaterial', 'ngMessages', 'ngAria', 'naif.base64']);

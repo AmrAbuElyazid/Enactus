@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="app">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" ng-app="app" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +10,8 @@
     <title>{{ config('app.name', 'Student|Dashboard') }}</title>
 
     <!-- Styles -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css"> <!-- Resource style -->
@@ -145,6 +138,13 @@
             @yield('content')
         </div> <!-- .content-wrapper -->
     </main> <!-- .cd-main-content -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
     <script src="/js/jquery-2.1.4.js"></script>
     <script src="/js/jquery.menu-aim.js"></script>
     <script src="/js/app.js"></script>

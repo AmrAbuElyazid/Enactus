@@ -93,6 +93,10 @@
                                 </div>
 
                                 <div class="cbp-mc-column">
+
+                                    <label for="date_of_birth">Date Of Birth</label>
+                                    <input type="date" id="date_of_birth" name="date_of_birth" required>
+                                    
                                     <label>Talent</label>
                                     <input type="text" name="talent" placeholder="What will you teach">
                                     <label>Proficiency</label>

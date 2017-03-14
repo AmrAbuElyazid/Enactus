@@ -25,6 +25,7 @@ class CreateTeachersTable extends Migration
             $table->text('comment')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->timestamp('date_of_birth')->nullable();
             $table->timestamps();
         });
     }
