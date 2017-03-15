@@ -60,8 +60,8 @@ Main Page Content
 }
 @media only screen and (min-width: 768px) {
   .cd-main-content .content-wrapper {
-    margin-left: 110px;
     padding-top: 100px;
+    margin-left: 110px;
   }
   .cd-main-content .content-wrapper h1 {
     padding: 4em 0;
@@ -74,7 +74,7 @@ Main Page Content
 }
 @media only screen and (min-width: 1170px) {
   .cd-main-content .content-wrapper {
-    margin-left: 200px;
+  margin-left: 200px;
   }
   .cd-main-content::before {
     content: 'desktop';

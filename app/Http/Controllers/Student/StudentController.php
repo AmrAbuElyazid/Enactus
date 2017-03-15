@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Student;
 
+use App\Http\Controllers\Controller;
 use App\Http\Traits\UploadImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -35,6 +37,8 @@ class StudentController extends Controller
      * @return json
      */
     public function updateAccountSettings(Request $request) {
+        $this->handleStudentInterests($request->interests);
+        
         if (is_array($request['photo'])) {
             $request['photo'] = $this->upload($request['photo'], 'business', 'base64');
         }
@@ -50,6 +54,7 @@ class StudentController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
+            'interests' => json_encode($request->interests, JSON_FORCE_OBJECT),
             'photo' => $request->photo,
             'address' => $request->address,
             'date_of_birth' => $request->date_of_birth,
@@ -59,5 +64,25 @@ class StudentController extends Controller
             'errror' => 'false',
             'message' => 'Account Settings Updated Successfully',
         ], 200);
+    }
+
+    /**
+     * Handle Student Interests and Tag
+     * @param  array  $interests
+     */
+    protected function handleStudentInterests(array $interests) {
+        if (DB::table('students_tags')->get()->count() != 0) {
+            DB::table('students_tags')
+                ->where('student_id', Auth::guard('student')->user()->id)
+                ->delete();
+        }
+
+        foreach ($interests as $tag) {
+            DB::table('students_tags')
+                ->insert([
+                    'student_id' => Auth::guard('student')->user()->id,
+                    'tag' => $tag,
+                ]);
+        }
     }
 }

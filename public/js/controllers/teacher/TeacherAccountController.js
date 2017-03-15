@@ -1,5 +1,5 @@
 var app = angular.module('app', ['ngMaterial', 'ngMessages', 'ngAria', 'naif.base64']);
-app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', function ($scope, $http, $mdDialog) {
+app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$mdSidenav', function ($scope, $http, $mdDialog, $mdSidenav) {
     /**
      * Var to indicate progress
      * @type {Boolean}
@@ -20,7 +20,7 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', func
 		photo: null,
 		date_of_birth: null,
 		address: null,
-		interests: null,
+		interests: [],
 		talent: null,
 		proficiency: null,
 		comment: null,
@@ -39,9 +39,11 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', func
 			$scope.teacher.last_name = response.data.teacher.last_name
 			$scope.teacher.email = response.data.teacher.email
 			$scope.teacher.phone_number = response.data.teacher.phone_number
+			if (response.data.teacher.interests !== null) {
+				$scope.teacher.interests = Object.values(JSON.parse(response.data.teacher.interests))
+			}
 			$scope.teacher.photo = response.data.teacher.photo
 			$scope.teacher.address = response.data.teacher.address
-			$scope.teacher.interests = response.data.teacher.interests
 			$scope.teacher.talent = response.data.teacher.talent
 			$scope.teacher.proficiency = response.data.teacher.proficiency
 			$scope.teacher.comment = response.data.teacher.comment

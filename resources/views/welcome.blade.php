@@ -153,8 +153,8 @@
                                     <label for="">Last Name</label>
                                     <input type="text" id="last_name" name="last_name" placeholder="Doe" required>
 
-                                    <label for="password_confirmation">Confirm Password</label>
-                                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="**********" required>
+                                    <label>Confirm Password</label>
+                                    <input type="password" name="password_confirmation" placeholder="**********" required>
 
                                     <label for="">Address</label>
                                     <input type="text" id="address" name="address" placeholder="Cairo, Egypt" required>
@@ -165,8 +165,8 @@
                                     <label for="">Email Address</label>
                                     <input type="email" id="email" name="email" placeholder="jon@doe.com" required>
 
-                                    <label for="date_of_birth">Date Of Birth</label>
-                                    <input type="date" id="date_of_birth" name="date_of_birth" required>
+                                    <label>Date Of Birth</label>
+                                    <input type="date" name="date_of_birth" required>
                                 </div>
                                 <div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="Sign Up"/></div>
                             </form>

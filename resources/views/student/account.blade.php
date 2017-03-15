@@ -62,11 +62,15 @@
 					</md-input-container>
 				</div>
 				
-
 				<div class="col-md-6">
 						<br>
 						      <md-datepicker ng-model="student.date_of_birth" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
 					<label style="margin-left: 62px;">Date Of Birth</label>
+				</div>
+				
+				<div class="col-md-12">
+					
+					<md-chips ng-model="student.interests" md-removable="true" placeholder="Enter your interests" secondary-placeholder="More interests"></md-chips>
 				</div>
 				
 				<div class="col-md-12">

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Student|Dashboard') }}</title>
 
     <!-- Styles -->
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+    <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
@@ -45,8 +45,10 @@
                 <li><a href="#0">Support</a></li>
                 <li class="has-children account">
                     <a href="#0">
-                        <img src="/img/cd-avatar.png" alt="avatar">
-                        Account
+                        @if(Auth::guard('student')->user()->photo != null)
+                            <img src="{{ Auth::guard('student')->user()->photo }}" alt="avatar">
+                        @endif
+                        {{ Auth::guard('student')->user()->first_name }}
                     </a>
 
                     <ul>
@@ -138,11 +140,10 @@
             @yield('content')
         </div> <!-- .content-wrapper -->
     </main> <!-- .cd-main-content -->
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-
-
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
     <script src="/js/jquery-2.1.4.js"></script>

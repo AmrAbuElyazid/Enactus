@@ -1,5 +1,5 @@
 var app = angular.module('app', ['ngMaterial', 'ngMessages', 'ngAria', 'naif.base64']);
-app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog) {
+app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', '$mdSidenav', function($scope, $http, $mdDialog, $mdSidenav) {
     /**
      * Var to indicate progress
      * @type {Boolean}
@@ -11,16 +11,17 @@ app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', func
      * @type {Boolean}
      */
     $scope.success = false;
-
+    
     /**
      * student data
      * @type {Object}
      */
     $scope.student = {
         first_name: null,
-        second_name: null,
+        last_name: null,
         email: null,
         phone_number: null,
+        interests: [],
         photo: null,
         address: null,
         date_of_birth: null,
@@ -39,6 +40,7 @@ app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', func
             $scope.student.email = response.data.student.email
             $scope.student.photo = response.data.student.photo
             $scope.student.phone_number = response.data.student.phone_number
+            $scope.student.interests = Object.values(JSON.parse(response.data.student.interests))            
             $scope.student.address = response.data.student.address
             $scope.student.date_of_birth = formatMysqlDate(response.data.student.date_of_birth);
 
@@ -64,6 +66,7 @@ app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', func
                 last_name: $scope.student.last_name,
                 email: $scope.student.email,
                 phone_number: $scope.student.phone_number,
+                interests: $scope.student.interests,
                 photo: $scope.student.photo,
                 address: $scope.student.address,
                 date_of_birth: date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' 00:00:00',

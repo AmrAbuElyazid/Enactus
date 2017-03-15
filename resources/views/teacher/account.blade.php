@@ -2,7 +2,7 @@
 @section('content')
 <div class="container" ng-controller="TeacherAccountController" id="container">
 <md-progress-linear md-mode="indeterminate" ng-if="progress"></md-progress-linear>
-
+	
 	<label for="photo" class="custom-file-upload"><img ng-src="@{{ teacher.photo }}" alt="" style="position: relative; border: 3px solid #3F51B5; margin-bottom: 30px; margin-left: -100px; left: 50%;  width: 150px; height: 150px; border-radius: 50%;"></label>
 	<input id="photo" type="file" ng-model="teacher.photo" style="display: none;" base-sixty-four-input>
 	<div class="row">
@@ -97,15 +97,7 @@
 				</div> 
 
 				<div class="col-md-12">
-					<md-input-container class="md-block" flex-gt-sm>
-					<label>Interests</label>
-					<textarea md-maxlength="200" required name="interests" ng-model="teacher.interests" >
-					</textarea>
-					<div ng-messages="TeacherForm.interests.$error" ng-if="!showHints">
-						<div ng-message="required">Interests is requireed</div>
-						<div ng-message="md-maxlength">The name has to be less than 200 characters long.</div>
-					</div>
-					</md-input-container>
+					<md-chips ng-model="teacher.interests" md-removable="true" placeholder="Enter your interests" secondary-placeholder="More interests"></md-chips>
 				</div>
 				
 				

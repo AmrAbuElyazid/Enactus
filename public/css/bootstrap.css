@@ -301,8 +301,6 @@ img {
 .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 @media (min-width: 768px) {
   .container {
@@ -314,6 +312,7 @@ img {
 }
 @media (min-width: 1200px) {
   .container {
+  margin-left: -45px;;
   }
 }
 .container-fluid {
