@@ -12,6 +12,10 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$md
      */
     $scope.success = false;
 
+    /**
+     * Teacher Info OBJ
+     * @type {Object}
+     */
 	$scope.teacher = {
 		first_name: null,
 		last_name: null,
@@ -34,7 +38,6 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$md
 			method: 'GET',
 			url: '/teacher/settings/get',
 		}).then(function success(response) {
-			// console.log(formatMysqlDate(response.data.teacher.date_of_birth));
 			$scope.teacher.first_name = response.data.teacher.first_name
 			$scope.teacher.last_name = response.data.teacher.last_name
 			$scope.teacher.email = response.data.teacher.email
@@ -87,7 +90,9 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$md
         });
     };
 
-
+    /**
+     * Material Design Dialog
+     */
     $scope.showAlert = function() {
         $mdDialog.show(
           $mdDialog.alert()
@@ -110,11 +115,7 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$md
  	{
  		new Date(Date.parse(mySQLDate.replace('-','/','g')));
 		var myDate = mySQLDate.toString().slice(0, 10).split(/[- :]/);
-
-		var temp = myDate[1];
-		myDate[1] = myDate[2];
-		myDate[2] = temp;
-
+        
 		return new Date(myDate.join('-'));
  	}
 }]);

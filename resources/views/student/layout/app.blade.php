@@ -8,9 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Student|Dashboard') }}</title>
-
     <!-- Styles -->
-    <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
+    {{-- <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc.5/angular-material.css"> --}}
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
@@ -18,6 +19,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
+    <script data-require="ui-bootstrap@*" data-semver="0.12.1" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script src="/js/modernizr.js"></script> <!-- Modernizr -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -29,7 +31,7 @@
 </head>
 <body>
     <header class="cd-main-header">
-        <a href="#0" class="cd-logo"><img src="/img/cd-logo.svg" alt="Logo"></a>
+        <a href="/student/home" class="cd-logo"><img src="/img/cd-logo.svg" alt="Logo"></a>
         
         <div class="cd-search is-hidden">
             <form action="#0">

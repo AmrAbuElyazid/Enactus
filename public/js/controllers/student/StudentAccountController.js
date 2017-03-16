@@ -40,9 +40,11 @@ app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', '$md
             $scope.student.email = response.data.student.email
             $scope.student.photo = response.data.student.photo
             $scope.student.phone_number = response.data.student.phone_number
-            $scope.student.interests = Object.values(JSON.parse(response.data.student.interests))            
+            if (response.data.student.interests !== null) {
+                $scope.student.interests = Object.values(JSON.parse(response.data.student.interests))            
+            }
             $scope.student.address = response.data.student.address
-            $scope.student.date_of_birth = formatMysqlDate(response.data.student.date_of_birth);
+            $scope.student.date_of_birth = formatMysqlDate(response.data.student.date_of_birth)
 
         }, function error(response) {
             console.log(response);
@@ -104,11 +106,7 @@ app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', '$md
     {
         new Date(Date.parse(mySQLDate.replace('-','/','g')));
         var myDate = mySQLDate.toString().slice(0, 10).split(/[- :]/);
-
-        var temp = myDate[1];
-        myDate[1] = myDate[2];
-        myDate[2] = temp;
-
+        
         return new Date(myDate.join('-'));
     }
 }]);

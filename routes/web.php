@@ -1,5 +1,8 @@
 <?php
 
+use App\Student;
+use App\Teacher;
+
 Route::get('/', function () {
     if (Auth::guard('teacher')->check() == true) {
         return redirect(route('teacher.home'));
@@ -44,5 +47,15 @@ Route::group(['prefix' => 'student'], function () {
         Route::get('/settings', 'Student\StudentController@showAccountSettingsPage')->name('student.account.settings');
         Route::get('/settings/get', 'Student\StudentController@getAccountSettings')->name('student.get.account.settings');
         Route::patch('/settings/update', 'Student\StudentController@updateAccountSettings')->name('student.account.update');
+
+        Route::get('/get/match/teachers', 'Student\HomeController@getSameInterestsTeachers');
+        Route::get('/get/teacher/{id}', 'Student\HomeController@getTeacherInfoById');
+
+        Route::get('/teachers/count', function () {
+            return response()->json([
+                'teachersCount' => Teacher::all()->count(),
+                'studentsCount' => Student::all()->count(),
+            ], 200);
+        });
     });
 });
