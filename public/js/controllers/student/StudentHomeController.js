@@ -5,6 +5,8 @@ app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', functio
      * @type {OGB}
      */
     $scope.teachers = null;
+        	$scope.currentPage = 0;
+		    $scope.pageSize = 10;
 
     (function () {
         $http({
@@ -12,12 +14,10 @@ app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', functio
             url: '/student/get/match/teachers'
         }).then(function success(response) {
             $scope.teachers = response.data.teachers
-
-        	$scope.currentPage = 0;
-		    $scope.pageSize = 2;
             $scope.numberOfPages=function(){
 		        return Math.ceil($scope.teachers.length/$scope.pageSize);                
 		    }
+
         });
         $http({
         	method: 'GET',
@@ -34,7 +34,6 @@ app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', functio
             url: 'get/teacher/' + $id,
         }).then(function success(response) {
             console.log(response.data)
-            $scope.items = [0, 1, 2, 3];
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: '/js/templates/teacher.tmpl.html',
