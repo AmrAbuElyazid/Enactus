@@ -344,11 +344,11 @@ md-content {
     max-width: 100%;
 }
 
-.container.home-blade {
     .pagination {
         margin-top: 40px;
         text-align: center;
     }
+.container.home-blade {
     .signedTeachers {
         margin-bottom: 10px;
         .img img {
@@ -381,4 +381,10 @@ md-content {
         }
     }
 
+}
+
+.md-user-avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }

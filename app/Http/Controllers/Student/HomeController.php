@@ -31,7 +31,8 @@ class HomeController extends Controller
         foreach (array_unique($data->toArray()) as $id) {
             $teachers[]= $this->getTeacherInfoById($id);
         }
-
+        // return ($this->getTeacherInfoById(4));
+        // dd();
         return response()->json([
             'error' => false,
             'teachers' => $teachers,
@@ -46,7 +47,13 @@ class HomeController extends Controller
      */
     public function getTeacherInfoById(int $id)
     {
-        return Teacher::where('id', $id)->select('id', 'first_name', 'last_name', 'email', 'phone_number', 'interests', 'address', 'photo', 'date_of_birth')->first();
+        $teacher = Teacher::where('id', $id)->first();
+        $student = Auth::guard('student')->user();
+        return [
+            'teacher' => Teacher::where('id', $id)->select('id', 'first_name', 'last_name', 'email', 'phone_number', 'interests', 'address', 'photo', 'date_of_birth')->first(),
+            'pendingFriendRequest' => $teacher->hasFriendRequestFrom($student),
+            'isFriend' => $student->isFriendWith($teacher),
+        ];    
     }
 
 }

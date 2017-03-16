@@ -47,9 +47,7 @@
                 <li><a href="#0">Support</a></li>
                 <li class="has-children account">
                     <a href="#0">
-                        @if(Auth::guard('student')->user()->photo != null)
-                            <img src="{{ Auth::guard('student')->user()->photo }}" alt="avatar">
-                        @endif
+                        <img src="{{ Auth::guard('student')->user()->photo }}" alt="avatar">
                         {{ Auth::guard('student')->user()->first_name }}
                     </a>
 
@@ -90,13 +88,23 @@
                     </ul>
                 </li>
 
-                <li class="has-children comments">
-                    <a href="#0">Comments</a>
-                    
+                <li class="has-children">
+                    <a href="{{ route('friends') }}">Friends</a>
                     <ul>
-                        <li><a href="#0">All Comments</a></li>
-                        <li><a href="#0">Edit Comment</a></li>
-                        <li><a href="#0">Delete Comment</a></li>
+                        <li>
+                            <a href="{{ route('friends') }}">All Friends 
+                                <span class="count">
+                                    {{ Auth::guard('student')->user()->getAllFriendships()->count() }}
+                                </span>
+                            </a>
+                        </li>
+                        <li><a href="#0">Pending Friend Requests 
+                            <span class="count">
+                                
+                                {{ Auth::guard('student')->user()->getPendingFriendships()->count() }}
+                            </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

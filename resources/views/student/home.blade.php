@@ -12,30 +12,29 @@
                         <div class="teachers row">
                             <div ng-if="teachers.length == 0">
                                 <h1 style="text-align: center;">
-                                No teachers meet your interests, don't be sad go to your <a href="{{route('student.account.settings') }}"> account </a> and start adding interests
+                                    No teachers meet your interests, don't be sad go to your <a href="{{route('student.account.settings') }}"> account </a> and start adding interests
                                 </h1>
                             </div>
                             <md-list flex ng-if="teachers.length != 0">
                             <md-list-item class="md-3-line col-md-6"
-                            ng-repeat="teacher in teachers | startFrom:currentPage*pageSize | limitTo:pageSize"
-                            ng-click="showDate(teacher.id)"
-                            >
-                            <img ng-src="@{{ teacher.photo }}" class="md-avatar" alt="@{{teacher.first_name}}" />
-                            <div class="md-list-item-text" layout="column">
-                                <h3>@{{ teacher.first_name }} @{{ teacher.last_name }}</h3>
-                                <h4>@{{ teacher.email }}</h4>
-                                <p>@{{ teacher.phone_number }}</p>
-                            </div>
+                                ng-repeat="data in teachers | startFrom:currentPage*pageSize | limitTo:pageSize"
+                                ng-click="showDate(data.teacher.id)"
+                                >
+                                <img ng-src="@{{ data.teacher.photo }}" class="md-avatar" alt="@{{data.teacher.first_name}}" />
+                                <div class="md-list-item-text" layout="column">
+                                    <h3>@{{ data.teacher.first_name }} @{{ data.teacher.last_name }}</h3>
+                                    <h4>@{{ data.teacher.email }}</h4>
+                                    <p>@{{ data.teacher.phone_number }}</p>
+                                </div>
                             </md-list-item>
                             <div class="col-sm-12 col-lg-12 pagination" ng-show="teachers.length != 0">
-                                <md-button class="md-fab md-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
-                                <img ng-src="/img/back.png"></img>
+                                <md-button class="md-fab md-primary" aria-label="Use Androids" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                                    <img ng-src="/img/back.png"></img>
                                 </md-button>
-                                @{{currentPage+1}}/@{{numberOfPages()}}
-                                <md-button class="md-fab md-primary" ng-disabled="currentPage >= teachers.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-                                <img ng-src="/img/next.png"></img>
+                                @{{currentPage+1}} / @{{numberOfPages()}}
+                                <md-button class="md-fab md-primary" aria-label="Use Android" ng-disabled="currentPage >= teachers.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                                    <img ng-src="/img/next.png"></img>
                                 </md-button>
-                                
                             </div>
                         </div>
                     </div>
@@ -64,6 +63,7 @@
                                 <p>@{{ studentsCount }} Student</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

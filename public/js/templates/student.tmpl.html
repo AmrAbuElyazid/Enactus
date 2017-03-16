@@ -2,21 +2,22 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>{{ teacher.first_name }} {{ teacher.last_name }} info</h2>
+        <h2>{{ student.first_name }} {{ student.last_name }} info</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <!-- <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon> -->
+          <img src="/img/remove.png" alt="">
         </md-button>
       </div>
     </md-toolbar>
 
     <md-dialog-content>
-      <img ng-src="{{ teacher.photo }}" alt="{{ teacher.first_name }}">
+      <img ng-src="{{ student.photo }}" alt="{{ student.first_name }}">
       <div class="md-dialog-content">
-        <h2>Name : {{ teacher.first_name }} {{ teacher.last_name }}</h2>
-        <h2>email : {{ teacher.email }}</h2>
-        <h2>Phone Number : {{ teacher.phone_number }}</h2>
-        <h2>Date of birth : {{ teacher.date_of_birth }}</h2>
+        <h2>Name : {{ student.first_name }} {{ student.last_name }}</h2>
+        <h2>email : {{ student.email }}</h2>
+        <h2>Phone Number : {{ student.phone_number }}</h2>
+        <h2>Date of birth : {{ student.date_of_birth }}</h2>
       </div>
     </md-dialog-content>
 
@@ -25,7 +26,7 @@
         Contact
       </md-button>
       <span flex></span>
-      <md-button ng-click="sendTeacherId(teacher.id)" ng-show="!pendingFriendRequest && !isFriend">
+      <md-button ng-click="sendStudentId(student.id)" ng-show="!pendingFriendRequest && !isFriend">
        Add
       </md-button>
       <md-button ng-show="pendingFriendRequest && !isFriend">

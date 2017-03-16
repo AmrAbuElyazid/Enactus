@@ -1,25 +1,23 @@
 var app = angular.module('app', ['ngMaterial', 'ngMessages']);
-app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', function ($scope, $http, $mdDialog) {
+app.controller('TeacherHomeController', ['$scope', '$http', '$mdDialog', function ($scope, $http, $mdDialog) {
     /**
      * Teachers OBJ
      * @type {OGB}
      */
-    $scope.teachers = null;
+    $scope.students = null;
 
     (function () {
         $http({
             method: 'GET',
-            url: '/student/get/match/teachers'
+            url: '/teacher/get/match/students'
         }).then(function success(response) {
-            $scope.teachers = response.data.teachers
+            $scope.students = response.data.students
 
         	$scope.currentPage = 0;
 		    $scope.pageSize = 20;
-
             $scope.numberOfPages=function(){
-		        return Math.ceil($scope.teachers.length/$scope.pageSize);                
+		        return Math.ceil($scope.students.length/$scope.pageSize);                
 		    }
-
         });
         $http({
         	method: 'GET',
@@ -33,19 +31,15 @@ app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', functio
     $scope.showDate = function ($id) {
         $http({
             method: 'GET',
-            url: 'get/teacher/' + $id,
+            url: 'get/student/' + $id,
         }).then(function success(response) {
-<<<<<<< HEAD
-            console.log(response.data)
-=======
->>>>>>> friendship
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: '/js/templates/teacher.tmpl.html',
+                templateUrl: '/js/templates/student.tmpl.html',
                 clickOutsideToClose:true,
 				fullscreen: $scope.customFullscreen,
                 locals: {
-                    teacher: response.data.teacher,
+                    student: response.data.student,
                     pendingFriendRequest: response.data.pendingFriendRequest,
                     isFriend: response.data.isFriend
                 }
@@ -60,7 +54,7 @@ app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', functio
     $scope.sendFriendRequestToTeacher = function (id) {
     	$http({
     		method: 'POST',
-    		url: '/student/send/toTeacher/' + id,
+    		url: '/teacher/send/toStudent/' + id,
     	}).then(function success(response) {
     		$mdDialog.show(
 			$mdDialog.alert()
@@ -76,12 +70,12 @@ app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', functio
     }
 
 
-    function DialogController($scope, $mdDialog, teacher, pendingFriendRequest, isFriend) {
-        $scope.teacher = teacher
+    function DialogController($scope, $mdDialog, student, pendingFriendRequest, isFriend) {
+        $scope.student = student
         $scope.pendingFriendRequest = pendingFriendRequest
         $scope.isFriend = isFriend
 
-        $scope.sendTeacherId = function(id) {
+        $scope.sendStudentId = function(id) {
         	$mdDialog.hide(id);
         };
 
