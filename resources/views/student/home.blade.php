@@ -17,18 +17,18 @@
                             </div>
                             <md-list flex ng-if="teachers.length != 0">
                             <md-list-item class="md-3-line col-md-6"
-                                ng-repeat="teacher in teachers | startFrom:currentPage*pageSize | limitTo:pageSize"
-                                ng-click="showDate(teacher.id)"
+                                ng-repeat="data in teachers | startFrom:currentPage*pageSize | limitTo:pageSize"
+                                ng-click="showDate(data.teacher.id)"
                                 >
-                                <img ng-src="@{{ teacher.photo }}" class="md-avatar" alt="@{{teacher.first_name}}" />
+                                <img ng-src="@{{ data.teacher.photo }}" class="md-avatar" alt="@{{data.teacher.first_name}}" />
                                 <div class="md-list-item-text" layout="column">
-                                    <h3>@{{ teacher.first_name }} @{{ teacher.last_name }}</h3>
-                                    <h4>@{{ teacher.email }}</h4>
-                                    <p>@{{ teacher.phone_number }}</p>
+                                    <h3>@{{ data.teacher.first_name }} @{{ data.teacher.last_name }}</h3>
+                                    <h4>@{{ data.teacher.email }}</h4>
+                                    <p>@{{ data.teacher.phone_number }}</p>
                                 </div>
                             </md-list-item>
-                            <div class="col-sm-12 col-lg-12 pagination" ng-if="teachers.length != 0">
-                                <md-button class="md-fab md-primary" aria-label="Use Android" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                            <div class="col-sm-12 col-lg-12 pagination" ng-show="teachers.length != 0">
+                                <md-button class="md-fab md-primary" aria-label="Use Androids" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
                                     <img ng-src="/img/back.png"></img>
                                 </md-button>
                                 @{{currentPage+1}} / @{{numberOfPages()}}

@@ -14,6 +14,13 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('student/teachers/count', function () {
+    return response()->json([
+        'teachersCount' => Teacher::all()->count(),
+        'studentsCount' => Student::all()->count(),
+    ], 200);
+});
+
 Route::group(['prefix' => 'teacher'], function () {
     Route::post('/login', 'TeacherAuth\LoginController@login')->name('teacher.login');
     Route::post('/logout', 'TeacherAuth\LoginController@logout')->name('teacher.logout');
@@ -29,6 +36,23 @@ Route::group(['prefix' => 'teacher'], function () {
         Route::get('/settings', 'Teacher\TeacherController@showAccountSettingsPage')->name('teacher.account.settings');
         Route::get('/settings/get', 'Teacher\TeacherController@getAccountSettings')->name('teacher.get.account.settings');
         Route::patch('/settings/update', 'Teacher\TeacherController@updateAccountSettings')->name('teacher.account.update');
+
+        Route::get('/get/match/students', 'Teacher\HomeController@getSameInterestsStudents');
+        Route::get('/get/student/{id}', 'Teacher\HomeController@getStudentInfoById');
+
+        // Friendships routes
+        Route::get('/friends', 'Teacher\FriendshipController@showFirendsPage')->name('teacher.friends');
+        Route::get('/get/friends', 'Teacher\FriendshipController@getAllTeacherFriends')->name('teacher.friends.get');
+        Route::get('/friends/pending', 'Teacher\FriendshipController@showPendingRequestsPage')->name('teacher.requests.pending');
+        Route::get('/get/pending', 'Teacher\FriendshipController@getPendingFriendRequests')->name('teacger.friends.get.pending');
+
+        Route::post('/accept/student/{id}', 'Teacher\FriendshipController@accpetTeacherFriendRequest');
+        Route::post('/send/toStudent/{id}', 'Teacher\FriendshipController@sendFriendRequestToStudent');
+
+        // messages
+        Route::post('/message/{id}', 'Teacher\FriendshipController@sendMessageToTeacher');
+        Route::post('/delete/{id}', 'Teacher\FriendshipController@removeTeacherFromFriends');
+
     });
 
 });
@@ -51,11 +75,17 @@ Route::group(['prefix' => 'student'], function () {
         Route::get('/get/match/teachers', 'Student\HomeController@getSameInterestsTeachers');
         Route::get('/get/teacher/{id}', 'Student\HomeController@getTeacherInfoById');
 
-        Route::get('/teachers/count', function () {
-            return response()->json([
-                'teachersCount' => Teacher::all()->count(),
-                'studentsCount' => Student::all()->count(),
-            ], 200);
-        });
+        // Friendships routes
+        Route::get('/friends', 'Student\FriendshipController@showFirendsPage')->name('friends');
+        Route::get('/get/friends', 'Student\FriendshipController@getAllStudentFriends')->name('friends.get');
+        Route::get('/friends/pending', 'Student\FriendshipController@showPendingRequestsPage')->name('requests.pending');
+        Route::get('/get/pending', 'Student\FriendshipController@getPendingFriendRequests')->name('friends.get.pending');
+        Route::post('/accept/teacher/{id}', 'Student\FriendshipController@accpetTeacherFriendRequest');
+        Route::post('/send/toTeacher/{id}', 'Student\FriendshipController@sendFriendRequestToTeacher');
+
+        // messages
+        Route::post('/message/{id}', 'Student\FriendshipController@sendMessageToTeacher');
+        Route::post('/delete/{id}', 'Student\FriendshipController@removeTeacherFromFriends');
+
     });
 });

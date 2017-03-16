@@ -3,12 +3,13 @@
 namespace App;
 
 use App\Notifications\StudentResetPassword;
-use Illuminate\Notifications\Notifiable;
+use Hootlex\Friendships\Traits\Friendable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class Student extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Friendable;
 
     /**
      * The attributes that are mass assignable.
