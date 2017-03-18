@@ -87,5 +87,8 @@ Route::group(['prefix' => 'student'], function () {
         Route::post('/message/{id}', 'Student\FriendshipController@sendMessageToTeacher');
         Route::post('/delete/{id}', 'Student\FriendshipController@removeTeacherFromFriends');
 
+        // teachers profile
+        Route::get('/teacher/{teacher}', 'Student\ProfileController@showTeacherProfile');
+        Route::get('/get/teacher/{teacher}', 'Student/ProfileController@getTeacherProfile');
     });
 });
