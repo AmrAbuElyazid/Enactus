@@ -89,6 +89,9 @@ Route::group(['prefix' => 'student'], function () {
 
         // teachers profile
         Route::get('/teacher/{teacher}', 'Student\ProfileController@showTeacherProfile');
-        Route::get('/get/teacher/{teacher}', 'Student/ProfileController@getTeacherProfile');
+        Route::get('/rate/{id}', 'Student\ProfileController@getTeacherRate');
+        Route::post('/rate', 'Student\ProfileController@saveTeacherRate');
+        Route::post('/met/teacher', 'Student\ProfileController@studentMetTeacher')->name('student.met.teacher');
+
     });
 });

@@ -4,7 +4,6 @@
 @import "variables";
 // Bootstrap
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
 .container .row .panel {
     background-color: #fff;
     border-radius: 6px;
@@ -19,7 +18,6 @@
         padding: 30px 3% 2% 3%;
         width: 100%;
         display: inline-block;
-
         // Prfile Style Start
         .business__info {
             background-color: #F3F4FE;
@@ -28,7 +26,6 @@
             h2 {
                 font-size: 20px;
                 font-weight: bold;
-                
             }
         }
         .business__description {
@@ -46,7 +43,6 @@
                 background-color: inherit;
             }
         }
-
         .details__section {
             margin-top: 60px;
             .location, .wifi {
@@ -65,7 +61,6 @@
                     padding: 2px 10px 2px 30px;
                     border: 1px solid #FFC3C3;
                     border-radius: 8px;
-
                     option {
                         background-color: rgba(255, 255, 255, 0);
                         border: 1px solid #FFC3C3;
@@ -73,14 +68,13 @@
                     }
                 }
             }
-            
             .facebook, .instagram {
                 margin-top: 80px;
                 img {
                     float: left;
                 }
                 p {
-                    margin-top: 7px; 
+                    margin-top: 7px;
                     margin-left: 10px;
                 }
                 input[type=text] {
@@ -103,7 +97,6 @@
                     border-radius: 6px;
                 }
             }
-
             .photo, .cover {
                 margin-top: 80px;
                 img {
@@ -111,15 +104,13 @@
                     margin-right: 20px;
                     margin-top: -20px;
                 }
-
-               .upload__logo__p {
+                .upload__logo__p {
                     margin-top: 20px;
                     padding-bottom: 5px;
-               } 
+                }
                 input[type=file] {
                     display: none;
                 }
-
                 .custom-file-upload {
                     float: right;
                     margin-top: -30px;
@@ -135,7 +126,6 @@
                     cursor: pointer;
                 }
             }
-            
             .submit__form {
                 width: 180px;
                 height: 35px;
@@ -148,7 +138,6 @@
                 border-radius: 6px;
             }
         }
-
         .woking__days {
             h2 {
                 font-size: 20px;
@@ -169,17 +158,16 @@
                             display: block;
                             text-align: center;
                             padding: 13px 20px 13px 20px;
-                            margin-left: 20px; 
+                            margin-left: 20px;
                             text-decoration: none;
                             border: 2px solid #B4ADC6;
                             border-radius: 15px;
                             color: #000;
                         }
                     }
-                } 
+                }
             }
         }
-
         .woking__hours {
             margin-top: 20px;
             h2 {
@@ -195,14 +183,12 @@
                 border: 2px solid #B4ADC6;
                 border-radius: 18px;
             }
-
             span {
                 font-size: 20px;
             }
             .select__from {
                 margin-right: 20px;
             }
-
             .select__to {
                 margin-left: 20px;
             }
@@ -223,7 +209,7 @@
                 form {
                     padding-bottom: 20px;
                     padding-left: 20px;
-                    overflow:auto;
+                    overflow: auto;
                     width: 100%;
                     height: 100%;
                     background-color: #F8F8FB;
@@ -242,7 +228,6 @@
                         border: 0px solid #fff;
                         background-color: #fff;
                     }
-
                     input[type=submit] {
                         margin-top: 30px;
                         padding: 5px 20px 5px 20px;
@@ -252,20 +237,17 @@
                         border-radius: 5px;
                         color: #fff;
                         -webkit-box-shadow: 0px 3px 0px #39294E;
-                        -moz-box-shadow:    0px 3px 0px #39294E;
-                        box-shadow:         0px 3px 0px #39294E;
-
+                        -moz-box-shadow: 0px 3px 0px #39294E;
+                        box-shadow: 0px 3px 0px #39294E;
                     }
                 }
             }
-
             .subscription {
                 .time__left {
                     margin-top: 90px;
                 }
                 .subscription__type, .time__left {
                     padding-left: 15%;
-
                     h2 {
                         font-size: 25px;
                         float: left;
@@ -336,6 +318,7 @@
         }
     }
 }
+
 md-content {
     background-color: rgba(255, 255, 255, 0);
 }
@@ -344,10 +327,11 @@ md-content {
     max-width: 100%;
 }
 
-    .pagination {
-        margin-top: 40px;
-        text-align: center;
-    }
+.pagination {
+    margin-top: 40px;
+    text-align: center;
+}
+
 .container.home-blade {
     .signedTeachers {
         margin-bottom: 10px;
@@ -364,8 +348,7 @@ md-content {
             font-size: 20px;
         }
     }
-
-    .signedStudents  {
+    .signedStudents {
         float: right;
         .img img {
             width: 50px;
@@ -380,7 +363,6 @@ md-content {
             font-size: 20px;
         }
     }
-
 }
 
 .md-user-avatar {
@@ -389,7 +371,7 @@ md-content {
     height: 50px;
 }
 
-.container.profile {  
+.container.profile {
     img {
         width: 100px;
         height: 100px;
@@ -398,7 +380,6 @@ md-content {
     }
     .panel.info {
         margin-top: 35px;
-
         .panel-heading {
             padding-left: 25px;
         }
@@ -406,7 +387,6 @@ md-content {
             p {
                 margin-bottom: 20px;
             }
-
             button {
                 float: right;
                 margin-right: 90px;
@@ -415,10 +395,12 @@ md-content {
                 border: none;
                 border-radius: 4px;
             }
+            button.pending {
+                width: 250px;
+            }
         }
     }
-
-    .panel.rate {
+    .panel.review {
         textarea {
             overflow: hidden;
             outline: none;
@@ -433,5 +415,25 @@ md-content {
             position: absolute;
             right: 10px;
         }
+        button {
+            float: right;
+            margin-top: 50px;
+            width: 120px;
+            height: 40px;
+            border: none;
+            border-radius: 4px;
+            display: none;
+        }
+
+    }
+    .panel.rate {
+        p {
+            font-size: 131%;
+            text-align: center;
+        }
+        .ngrateit {
+            display: table;
+            margin: auto;
+        }   
     }
 }

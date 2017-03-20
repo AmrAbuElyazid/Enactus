@@ -13,6 +13,7 @@ class CreateFriendshipsTable extends Migration
             $table->morphs('sender');
             $table->morphs('recipient');
             $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('met')->nullable()->default(0);
             $table->timestamps();
         });
     }

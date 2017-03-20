@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css"> <!-- Resource style -->
     <link href="/css/app.css" rel="stylesheet">
+    @yield('styles')
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
     <script data-require="ui-bootstrap@*" data-semver="0.12.1" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>

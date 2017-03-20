@@ -31,8 +31,7 @@ class HomeController extends Controller
         foreach (array_unique($data->toArray()) as $id) {
             $teachers[]= $this->getTeacherInfoById($id);
         }
-        // return ($this->getTeacherInfoById(4));
-        // dd();
+        
         return response()->json([
             'error' => false,
             'teachers' => $teachers,

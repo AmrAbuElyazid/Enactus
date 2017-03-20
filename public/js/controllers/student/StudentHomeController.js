@@ -35,10 +35,7 @@ app.controller('StudentHomeController', ['$scope', '$http', '$mdDialog', functio
             method: 'GET',
             url: 'get/teacher/' + $id,
         }).then(function success(response) {
-<<<<<<< HEAD
-            console.log(response.data)
-=======
->>>>>>> friendship
+
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: '/js/templates/teacher.tmpl.html',
