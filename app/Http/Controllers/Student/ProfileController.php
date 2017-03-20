@@ -37,11 +37,18 @@ class ProfileController extends Controller
                 'rater_type' => 'App\Student',
                 'rated_id' => $id,
                 'rated_type' => 'App\Teacher',
-            ])->first()->rate;
+            ])->first();
+
+        if ($met == null) {
+            return response()->json([
+                'error' => false,
+                'rate' => 0,
+            ], 200);
+        }
 
         return response()->json([
             'error' => false,
-            'rate' => $rate,
+            'rate' => $rate->rate,
         ], 200);
     }
 
@@ -95,35 +102,23 @@ class ProfileController extends Controller
     }
 
     protected function isTeacherAndStudentMet(int $id) {
-        if (Auth::guard('student')->check()) {
-            $met = DB::table('friendships')->where([
-                'sender_type' => 'App\Student',
-                'sender_id' => Auth::guard('student')->user()->id,
-                'recipient_type' => 'App\Teacher',
-                'recipient_id' => $id,
-            ])
-            ->orWhere([
-                'sender_type' => 'App\Teacher',
-                'sender_id' => $id,
-                'recipient_type' => 'App\Student',
-                'recipient_id' => Auth::guard('student')->user()->id,
-            ])->first()->met;
-            return $met;
+        $met = DB::table('friendships')->where([
+            'sender_type' => 'App\Student',
+            'sender_id' => Auth::guard('student')->user()->id,
+            'recipient_type' => 'App\Teacher',
+            'recipient_id' => $id,
+        ])
+        ->orWhere([
+            'sender_type' => 'App\Teacher',
+            'sender_id' => $id,
+            'recipient_type' => 'App\Student',
+            'recipient_id' => Auth::guard('student')->user()->id,
+        ])->first();
+
+        if ($met == null) {
+            return false;
         }
-        if (Auth::guard('teacher')->check()) {
-            $met = DB::table('friendships')->where([
-                'sender_type' => 'App\Student',
-                'sender_id' => Auth::guard('student')->user()->id,
-                'recipient_type' => 'App\Teacher',
-                'recipient_id' => $id,
-            ])
-            ->orWhere([
-                'sender_type' => 'App\Teacher',
-                'sender_id' => $id,
-                'recipient_type' => 'App\Student',
-                'recipient_id' => Auth::guard('student')->user()->id,
-            ])->first()->met;
-            return $met;
-        }
+
+        return $met;
     }
 }

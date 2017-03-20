@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/style.css"> <!-- Resource style -->
     <link href="/css/app.css" rel="stylesheet">
+    @yield('styles')
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
     <script src="/js/modernizr.js"></script> <!-- Modernizr -->

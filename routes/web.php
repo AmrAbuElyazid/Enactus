@@ -53,6 +53,12 @@ Route::group(['prefix' => 'teacher'], function () {
         Route::post('/message/{id}', 'Teacher\FriendshipController@sendMessageToTeacher');
         Route::post('/delete/{id}', 'Teacher\FriendshipController@removeTeacherFromFriends');
 
+        // teachers profile
+        Route::get('/student/{student}', 'Teacher\ProfileController@showStudentProfile');
+        Route::get('/rate/{id}', 'Teacher\ProfileController@getStudentRate');
+        Route::post('/rate', 'Teacher\ProfileController@saveStudentRate');
+        Route::post('/met/teacher', 'Teacher\ProfileController@teacherMetStudent')->name('teacher.met.student');
+
     });
 
 });
