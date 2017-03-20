@@ -11,10 +11,10 @@
 				<p>Name: {{ $student->first_name }} {{ $student->last_name }} </p>
 				<p>Email: <a href="mailto:{{ $student->email }}">{{ $student->email }}</a></p>
 				<p>Phone Number: {{ $student->phone_number }}</p>
-				<p>Interests @foreach ($interests as $interest) {{ $interest }} @if ($interest != end($interests)) , @endif @endforeach</p>
+				<p>Interests: @foreach ($interests as $interest) {{ $interest }} @if ($interest != end($interests)) , @endif @endforeach</p>
 				<p>Address: {{ $student->address }}</p>
 				<p>Proficiency: {{ $student->proficiency }}</p>
-				<p>Date Of Birth: {{ $student->date_of_birth }}</p>
+				<p>Age: {{ \Carbon\Carbon::parse($student->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days') }}</p>
 				<div class="row">
 					<div class="col-md-12">
 						@if ($isFriends)
