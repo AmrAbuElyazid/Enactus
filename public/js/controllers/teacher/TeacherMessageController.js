@@ -1,31 +1,31 @@
 var app = angular.module('app', ['ngMaterial']);
-app.controller('StudentMessageController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog, $mdSidenav) {
+app.controller('TeacherMessageController', ['$scope', '$http', '$mdDialog', function($scope, $http, $mdDialog, $mdSidenav) {
     $scope.messages = [];
     $scope.message = null;
 
     $scope.getTeacherMessages = function () {
         $http({
             method: 'GET',
-            url: '/student/get/messages/' + $scope.teacher_id
+            url: '/teacher/get/messages/' + $scope.student_id
         }).then(function success(response) {
             for (var i = 1; i <= response.data.messages.length; i++) {
                 if (response.data.messages[i-1].sender_type == 'App\\Student') {
                     $scope.messages.push({
                         message: response.data.messages[i-1].message,
-                        direction: 'to',
+                        direction: 'from',
                     });
                 }
 
                 if (response.data.messages[i-1].sender_type == 'App\\Teacher') {
                     $scope.messages.push({
                         message: response.data.messages[i-1].message,
-                        direction: 'from',
+                        direction: 'to',
                     });
                 }
             }
             $http({
                 method: 'GET',
-                url: '/student/message/unread/' + $scope.teacher_id,
+                url: '/teacher/message/unread/' + $scope.student_id,
             });
             var elem = document.getElementById('messagesWrapper');
             elem.scrollTop = elem.scrollHeight;
@@ -35,7 +35,7 @@ app.controller('StudentMessageController', ['$scope', '$http', '$mdDialog', func
     $scope.getUnreadedMessages = function () {
         $http({
             method: 'GET',
-            url: '/student/message/unreaded/' + $scope.teacher_id,
+            url: '/teacher/message/unreaded/' + $scope.student_id,
         }).then(function success(response) {
             for (var i = 1; i <= response.data.messages.length; i++) {
                 $scope.messages.push({
@@ -46,7 +46,7 @@ app.controller('StudentMessageController', ['$scope', '$http', '$mdDialog', func
 
             $http({
                 method: 'GET',
-                url: '/student/message/unread/' + $scope.teacher_id,
+                url: '/teacher/message/unread/' + $scope.student_id,
             });
         });
     }
@@ -59,9 +59,9 @@ app.controller('StudentMessageController', ['$scope', '$http', '$mdDialog', func
         if ($scope.message != null && $scope.message != '') {
             $http({
                 method: 'POST',
-                url: '/student/message/' + $scope.teacher_id,
+                url: '/teacher/message/' + $scope.student_id,
                 data: {
-                    teacher_id: $scope.teacher_id,
+                    student_id: $scope.student_id,
                     message: $scope.message,
                 }
             }).then(function success(response) {

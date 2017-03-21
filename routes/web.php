@@ -61,6 +61,13 @@ Route::group(['prefix' => 'teacher'], function () {
 
         Route::post('/review', 'Teacher\ProfileController@saveReview');
 
+        //messages
+        Route::get('/messages/{id}', 'Teacher\MessageController@showMessagesPage');
+        Route::get('/get/messages/{id}', 'Teacher\MessageController@getMessages');
+        Route::post('/message/{id}', 'Teacher\MessageController@sendMessageToStudent');
+        Route::get('/message/unreaded/{id}', 'Teacher\MessageController@getUnreadedMessage');
+        Route::get('/message/unread/{id}', 'Teacher\MessageController@setAllMessagesToRead');
+
     });
 
 });
