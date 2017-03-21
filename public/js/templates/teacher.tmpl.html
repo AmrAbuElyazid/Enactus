@@ -21,8 +21,8 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-        Contact
+      <md-button href="/student/teacher/{{teacher.id}}" target="_blank" md-autofocus>
+        Show Profile
       </md-button>
       <span flex></span>
       <md-button ng-click="sendTeacherId(teacher.id)" ng-show="!pendingFriendRequest && !isFriend">

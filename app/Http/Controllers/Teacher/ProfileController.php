@@ -52,6 +52,28 @@ class ProfileController extends Controller
         ], 200);
     }
 
+    public function getStudentReview(int $id)
+    {
+        $review = DB::table('reviews')->where([
+            'reviewer_type' => 'App\Teacher',
+            'reviewer_id' => Auth::guard('teacher')->user()->id,
+            'reviewed_type' => 'App\Student',
+            'reviewed_id' => $id,
+        ])->first();
+
+        if ($review == null) {
+            return response()->json([
+                'error' => false,
+                'review' => null,
+            ], 200);
+        }
+
+        return response()->json([
+            'error' => false,
+            'review' => $review->review, 
+        ], 200);
+    }
+
     /**
      * Save Teacher Rate
      * @param  Request $request
@@ -120,5 +142,23 @@ class ProfileController extends Controller
         }
 
         return $met->met;
+    }
+
+    public function saveReview(Request $request)
+    {
+        DB::table('reviews')->where([
+            'reviewer_type' => 'App\Teacher',
+            'reviewer_id' => Auth::guard('teacher')->user()->id,
+            'reviewed_type' => 'App\Student',
+            'reviewed_id' => $request->student_id,
+        ])->delete();
+
+        DB::table('reviews')->insert([
+            'reviewer_type' => 'App\Teacher',
+            'reviewer_id' => Auth::guard('teacher')->user()->id,
+            'reviewed_type' => 'App\Student',
+            'reviewed_id' => $request->student_id,
+            'review' => $request->review,
+        ]);
     }
 }

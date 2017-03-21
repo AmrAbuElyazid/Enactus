@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngMaterial', 'ngMessages']);
 app.controller('TeacherHomeController', ['$scope', '$http', '$mdDialog', function ($scope, $http, $mdDialog) {
     /**
      * Teachers OBJ
-     * @type {OGB}
+     * @type {OBJ}
      */
     $scope.students = null;
 

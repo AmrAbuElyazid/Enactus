@@ -39,7 +39,7 @@ class ProfileController extends Controller
                 'rated_type' => 'App\Teacher',
             ])->first();
 
-        if ($met == null) {
+        if ($rate == null) {
             return response()->json([
                 'error' => false,
                 'rate' => 0,
@@ -49,6 +49,28 @@ class ProfileController extends Controller
         return response()->json([
             'error' => false,
             'rate' => $rate->rate,
+        ], 200);
+    }
+
+    public function getTeacherReview(int $id)
+    {
+        $review = DB::table('reviews')->where([
+            'reviewer_type' => 'App\Student',
+            'reviewer_id' => Auth::guard('student')->user()->id,
+            'reviewed_type' => 'App\Teacher',
+            'reviewed_id' => $id,
+        ])->first();
+
+        if ($review == null) {
+            return response()->json([
+                'error' => false,
+                'review' => null,
+            ], 200);
+        }
+
+        return response()->json([
+            'error' => false,
+            'review' => $review->review, 
         ], 200);
     }
 
@@ -119,6 +141,24 @@ class ProfileController extends Controller
             return false;
         }
 
-        return $met;
+        return $met->met;
+    }
+
+    public function saveReview(Request $request)
+    {
+        DB::table('reviews')->where([
+            'reviewer_type' => 'App\Student',
+            'reviewer_id' => Auth::guard('student')->user()->id,
+            'reviewed_type' => 'App\Teacher',
+            'reviewed_id' => $request->teacher_id,
+        ])->delete();
+
+        DB::table('reviews')->insert([
+            'reviewer_type' => 'App\Student',
+            'reviewer_id' => Auth::guard('student')->user()->id,
+            'reviewed_type' => 'App\Teacher',
+            'reviewed_id' => $request->teacher_id,
+            'review' => $request->review,
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('student.layout.app')
 @section('content')
-<div class="container profile" ng-controller="StudentTeacherController" ng-init="teacher_id={{ $teacher->id }}; getTeacherRate()" {{-- data-ng-init="getTeacherRate()" --}} class="md-padding">
+<div class="container profile" ng-controller="StudentTeacherController" ng-init="teacher_id={{ $teacher->id }}; getTeacherRateAndReview()" class="md-padding">
 	<div class="row">
 		<img src="{{ $teacher->photo }}" alt="">
 		<div class="panel info">
@@ -14,7 +14,7 @@
 				<p>Interests: @foreach ($interests as $interest) {{ $interest }} @if ($interest != end($interests)) , @endif @endforeach</p>
 				<p>Address: {{ $teacher->address }}</p>
 				<p>Proficiency: {{ $teacher->proficiency }}</p>
-				<p>Age: {{ \Carbon\Carbon::parse($student->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days') }}</p>
+				<p>Age: {{ \Carbon\Carbon::parse($teacher->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y years') }}</p>
 				<div class="row">
 					<div class="col-md-12">
 						@if ($isFriends)
@@ -48,12 +48,13 @@
 							<input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
 						</form>
 					@endif
+
 					@if ($isFriends && $isTeacherAndStudentMet)
 						<div class="col-md-12">
-							<textarea name="review" placeholder="Write your review for teacher"></textarea>
+							<textarea name="review" placeholder="Write your review for teacher" ng-model="review"></textarea>
 							<span class="max-letters">Max Letters 500</span>
 						</div>
-						<div class="col-md-12">
+						<div class="col-md-12" ng-show="review != null">
 							<button ng-click="sendReview({{ $teacher->id }})">Send Review</button>
 						</div>
 					@endif

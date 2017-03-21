@@ -57,7 +57,10 @@ Route::group(['prefix' => 'teacher'], function () {
         Route::get('/student/{student}', 'Teacher\ProfileController@showStudentProfile');
         Route::get('/rate/{id}', 'Teacher\ProfileController@getStudentRate');
         Route::post('/rate', 'Teacher\ProfileController@saveStudentRate');
+        Route::get('/review/{id}', 'Teacher\ProfileController@getStudentReview');
         Route::post('/met/teacher', 'Teacher\ProfileController@teacherMetStudent')->name('teacher.met.student');
+
+        Route::post('/review', 'Teacher\ProfileController@saveReview');
 
     });
 
@@ -96,8 +99,10 @@ Route::group(['prefix' => 'student'], function () {
         // teachers profile
         Route::get('/teacher/{teacher}', 'Student\ProfileController@showTeacherProfile');
         Route::get('/rate/{id}', 'Student\ProfileController@getTeacherRate');
+        Route::get('/review/{id}', 'Student\ProfileController@getTeacherReview');
         Route::post('/rate', 'Student\ProfileController@saveTeacherRate');
         Route::post('/met/teacher', 'Student\ProfileController@studentMetTeacher')->name('student.met.teacher');
 
+        Route::post('/review', 'Student\ProfileController@saveReview');
     });
 });

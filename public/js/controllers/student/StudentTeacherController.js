@@ -14,14 +14,22 @@ app.controller('StudentTeacherController', ['$scope', '$http', '$mdDialog', func
     $scope.showAddFriendButton = false;
     $scope.showPendingRedeemButton = false;
 
+    $scope.review = null;
     $scope.rate = 0;
 
-    $scope.getTeacherRate = function () {
+    $scope.getTeacherRateAndReview = function () {
         $http({
             method: 'GET',
             url: '/student/rate/' + $scope.teacher_id,
         }).then(function success(response) {
             $scope.rate = response.data.rate
+        });
+
+        $http({
+            method: 'GET',
+            url: '/student/review/' + $scope.teacher_id,
+        }).then(function success(response) {
+            $scope.review = response.data.review 
         });
     };
 
@@ -73,6 +81,7 @@ app.controller('StudentTeacherController', ['$scope', '$http', '$mdDialog', func
                         .ariaLabel('Alert Message sent')
                         .ok('OK')
                 );
+                location.reload();
             });
         });
     }
@@ -93,6 +102,30 @@ app.controller('StudentTeacherController', ['$scope', '$http', '$mdDialog', func
                 .ok('Close')
                 .targetEvent()
             );
+            location.reload();
+        });
+    }
+
+    $scope.sendReview = function (teacher_id) {
+        $http({
+            method: 'POST',
+            url: '/student/review',
+            data: {
+                teacher_id: teacher_id,
+                review: $scope.review,
+            }
+        }).then(function success(response) {
+            $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('.container')))
+                .clickOutsideToClose(true)
+                .title('Success')
+                .textContent('Review Sent Successfully')
+                .ariaLabel('Alert Dialog Rate')
+                .ok('Close')
+                .targetEvent()
+            );
+
         });
     }
 

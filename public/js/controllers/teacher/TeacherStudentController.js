@@ -6,14 +6,22 @@ app.controller('TeacherStudentController', ['$scope', '$http', '$mdDialog', func
     $scope.showAddFriendButton = false;
     $scope.showPendingRedeemButton = false;
 
+    $scope.review = null;
     $scope.rate = 0;
 
-    $scope.getStudentRate = function () {
+    $scope.getStudentRateAndReview = function () {
         $http({
             method: 'GET',
             url: '/teacher/rate/' + $scope.student_id,
         }).then(function success(response) {
             $scope.rate = response.data.rate
+        });
+
+        $http({
+            method: 'GET',
+            url: '/teacher/review/' + $scope.student_id,
+        }).then(function success(response) {
+            $scope.review = response.data.review 
         });
     };
 
@@ -81,6 +89,29 @@ app.controller('TeacherStudentController', ['$scope', '$http', '$mdDialog', func
                 .clickOutsideToClose(true)
                 .title('Suceess')
                 .textContent('Friend Requst Send Successfully')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Close')
+                .targetEvent()
+            );
+            location.reload();
+        });
+    }
+
+    $scope.sendReview = function (student_id) {
+        $http({
+            method: 'POST',
+            url: '/teacher/review',
+            data: {
+                student_id: student_id,
+                review: $scope.review,
+            }
+        }).then(function success(response) {
+            $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('.container')))
+                .clickOutsideToClose(true)
+                .title('Suceess')
+                .textContent('Review Sent Successfully')
                 .ariaLabel('Alert Dialog Demo')
                 .ok('Close')
                 .targetEvent()
