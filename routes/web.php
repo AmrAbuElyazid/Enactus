@@ -50,8 +50,16 @@ Route::group(['prefix' => 'teacher'], function () {
         Route::post('/send/toStudent/{id}', 'Teacher\FriendshipController@sendFriendRequestToStudent');
 
         // messages
-        Route::post('/message/{id}', 'Teacher\FriendshipController@sendMessageToTeacher');
         Route::post('/delete/{id}', 'Teacher\FriendshipController@removeTeacherFromFriends');
+
+        // teachers profile
+        Route::get('/student/{student}', 'Teacher\ProfileController@showStudentProfile');
+        Route::get('/rate/{id}', 'Teacher\ProfileController@getStudentRate');
+        Route::post('/rate', 'Teacher\ProfileController@saveStudentRate');
+        Route::get('/review/{id}', 'Teacher\ProfileController@getStudentReview');
+        Route::post('/met/teacher', 'Teacher\ProfileController@teacherMetStudent')->name('teacher.met.student');
+
+        Route::post('/review', 'Teacher\ProfileController@saveReview');
 
     });
 
@@ -84,8 +92,23 @@ Route::group(['prefix' => 'student'], function () {
         Route::post('/send/toTeacher/{id}', 'Student\FriendshipController@sendFriendRequestToTeacher');
 
         // messages
-        Route::post('/message/{id}', 'Student\FriendshipController@sendMessageToTeacher');
         Route::post('/delete/{id}', 'Student\FriendshipController@removeTeacherFromFriends');
 
+        // teachers profile
+        Route::get('/teacher/{teacher}', 'Student\ProfileController@showTeacherProfile');
+        Route::get('/rate/{id}', 'Student\ProfileController@getTeacherRate');
+        Route::get('/review/{id}', 'Student\ProfileController@getTeacherReview');
+        Route::post('/rate', 'Student\ProfileController@saveTeacherRate');
+        Route::post('/met/teacher', 'Student\ProfileController@studentMetTeacher')->name('student.met.teacher');
+
+        Route::post('/review', 'Student\ProfileController@saveReview');
+
+        //messages
+        Route::get('/messages/{id}', 'Student\MessageController@showMessagesPage');
+        Route::get('/get/messages/{id}', 'Student\MessageController@getMessages');
+        Route::post('/message/{id}', 'Student\MessageController@sendMessageToTeacher');
+        Route::get('/message/unreaded/{id}', 'Student\MessageController@getUnreadedMessage');
+        Route::get('/message/unread/{id}', 'Student\MessageController@setAllMessagesToRead');
+        
     });
 });
