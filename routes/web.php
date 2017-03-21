@@ -102,8 +102,6 @@ Route::group(['prefix' => 'student'], function () {
         Route::post('/met/teacher', 'Student\ProfileController@studentMetTeacher')->name('student.met.teacher');
 
         Route::post('/review', 'Student\ProfileController@saveReview');
-<<<<<<< HEAD
-=======
 
         //messages
         Route::get('/messages/{id}', 'Student\MessageController@showMessagesPage');
@@ -112,6 +110,5 @@ Route::group(['prefix' => 'student'], function () {
         Route::get('/message/unreaded/{id}', 'Student\MessageController@getUnreadedMessage');
         Route::get('/message/unread/{id}', 'Student\MessageController@setAllMessagesToRead');
         
->>>>>>> messages
     });
 });
