@@ -54,7 +54,7 @@
                 <li><a href="#0">Support</a></li>
                 <li class="has-children account">
                     <a href="#0">
-                        <img src="/img/cd-avatar.png" alt="avatar">
+                        <img src="{{ Auth::guard('teacher')->user()->photo }}" alt="avatar">
                         Account
                     </a>
 

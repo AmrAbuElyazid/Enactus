@@ -56,9 +56,8 @@ class TeacherController extends Controller
             'interests' => json_encode($request->interests, JSON_FORCE_OBJECT),
             'photo' => $request->photo,
             'address' => $request->address,
+            'biography' => $request->biography,
             'date_of_birth' => $request->date_of_birth,
-            'address' => $request->address,
-            'talent' => $request->talent,
             'proficiency' => $request->proficiency,
         ]);
 

@@ -55,8 +55,7 @@ class RegisterController extends Controller
             'phone_number' => 'required|max:20|unique:teachers',
             'address' => 'min:2|max:200',
             'interests' => 'max:200',
-            'talent' => 'required|min:2|max:200',
-            'comment' => 'max:140',
+            'biography' => 'required|min:2|max:1000',
             'date_of_birth' => 'required|date',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -76,10 +75,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone_number' => $data['phone_number'],
             'address' => $data['address'],
-            'interests' => $data['interests'],
-            'talent' => $data['talent'],
+            'biography' => $data['biography'],
             'proficiency' => $data['proficiency'],
-            'comment' => $data['comment'],
             'date_of_birth' => $data['date_of_birth'],
             'password' => bcrypt($data['password']),
         ]);

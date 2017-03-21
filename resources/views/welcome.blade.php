@@ -87,9 +87,6 @@
 
                                     <label for="address">Address</label>
                                     <input type="text" id="address" name="address" placeholder="Cairo, Egypt">
-
-                                    <label for="interests">Your Interests</label>
-                                    <textarea id="interests" name="interests"></textarea>
                                 </div>
 
                                 <div class="cbp-mc-column">
@@ -97,18 +94,15 @@
                                     <label for="date_of_birth">Date Of Birth</label>
                                     <input type="date" id="date_of_birth" name="date_of_birth" required>
                                     
-                                    <label>Talent</label>
-                                    <input type="text" name="talent" placeholder="What will you teach">
                                     <label>Proficiency</label>
                                     <select id="proficiency" name="proficiency">
-                                        <option>Choose</option>
-                                        <option>Beginner</option>
-                                        <option>Intermediate</option>
-                                        <option>Expert</option>
+                                        <option value="beginner">Beginner</option>
+                                        <option value="intermediate">Intermediate</option>
+                                        <option value="expert">Expert</option>
                                     </select>
 
-                                    <label for="comment">Leave A Comment</label>
-                                    <textarea id="comment" name="comment"></textarea>
+                                    <label for="biography">Your Biography</label>
+                                    <textarea id="biography" name="biography"></textarea>
                                 </div>
                                 <div class="cbp-mc-submit-wrap"><input class="cbp-mc-submit" type="submit" value="Sign Up"/></div>
                             </form>
@@ -142,29 +136,31 @@
                                     <label for="">First Name</label>
                                     <input type="text" id="first_name" name="first_name" placeholder="Jonathan" required>
                                     
-                                    <label for="">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="**********" required>
-
-                                    <label for="phone_number">Phone Number</label>
-                                    <input type="text" id="phone_number" name="phone_number" placeholder="+351 999 999" required>
-                                </div>
-
-                                <div class="cbp-mc-column">
                                     <label for="">Last Name</label>
                                     <input type="text" id="last_name" name="last_name" placeholder="Doe" required>
 
+                                    <label for="">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="jon@doe.com" required>
+                                </div>
+
+                                <div class="cbp-mc-column">
+
+                                    <label for="">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="**********" required>
+                                    
                                     <label>Confirm Password</label>
                                     <input type="password" name="password_confirmation" placeholder="**********" required>
 
-                                    <label for="">Address</label>
-                                    <input type="text" id="address" name="address" placeholder="Cairo, Egypt" required>
+                                    <label for="phone_number">Phone Number</label>
+                                    <input type="text" id="phone_number" name="phone_number" placeholder="+351 999 999" required>
 
                                 </div>
 
                                 <div class="cbp-mc-column">
-                                    <label for="">Email Address</label>
-                                    <input type="email" id="email" name="email" placeholder="jon@doe.com" required>
 
+                                    <label for="">Address</label>
+                                    <input type="text" id="address" name="address" placeholder="Cairo, Egypt" required>
+                                    
                                     <label>Date Of Birth</label>
                                     <input type="date" name="date_of_birth" required>
                                 </div>

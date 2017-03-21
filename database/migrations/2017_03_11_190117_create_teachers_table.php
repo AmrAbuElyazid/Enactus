@@ -18,12 +18,12 @@ class CreateTeachersTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
-            $table->text('photo')->nullable();
+            $table->text('photo')->default('/img/avatar.png')->nullable();
             $table->string('address');
             $table->text('interests')->nullable();
-            $table->string('talent');
+            $table->text('biography');
+            $table->text('cv')->nullable();
             $table->string('proficiency');
-            $table->text('comment')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamp('date_of_birth')->nullable();

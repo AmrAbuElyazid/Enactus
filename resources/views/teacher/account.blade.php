@@ -4,7 +4,7 @@
 <md-progress-linear md-mode="indeterminate" ng-if="progress"></md-progress-linear>
 	
 	<label for="photo" class="custom-file-upload"><img ng-src="@{{ teacher.photo }}" alt="" style="position: relative; border: 3px solid #3F51B5; margin-bottom: 30px; margin-left: -100px; left: 50%;  width: 150px; height: 150px; border-radius: 50%;"></label>
-	<input id="photo" type="file" ng-model="teacher.photo" style="display: none;" base-sixty-four-input>
+	<input id="photo" type="file" ng-model="teacher.photoUpload" style="display: none;" base-sixty-four-input>
 	<div class="row">
 		<div class="settings">
 			<md-content layout-padding>
@@ -63,19 +63,9 @@
 				</div>
 				
 				
-				<div class="col-md-6">
-					<md-input-container class="md-block" flex-gt-sm>
-					<label>Talent</label>
-					<input md-maxlength="50" required name="talent" ng-model="teacher.talent" />
-					<div ng-messages="TeacherForm.talent.$error" ng-if="!showHints">
-						<div ng-message="required">Interests is requireed</div>
-						<div ng-message="md-maxlength">The name has to be less than 50 characters long.</div>
-					</div>
-					</md-input-container>
-				</div>
 				
 				<div class="col-md-6">
-					<md-input-container">
+					<md-input-container class="md-block" flex-gt-sm>
 					<label>Proficiency</label>
 					<md-select name="proficiency" ng-model="teacher.proficiency" required>
 					<md-option value="beginner">beginner</md-option>
@@ -88,18 +78,28 @@
 					</md-input-container>
 				</div>
 
-				<div class="col-md-6">
-					<br>
-					<md-input-container>
-					<md-datepicker ng-model="teacher.date_of_birth" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-					<label>Date Of Birth</label>
-					</md-input-container>
-				</div> 
-
 				<div class="col-md-12">
+					<md-input-container class="md-block" flex-gt-sm>
+					<label>BioGraphy</label>
+					<textarea md-maxlength="1000" required name="biography" ng-model="teacher.biography"></textarea>
+					<div ng-messages="TeacherForm.biography.$error" ng-if="!showHints">
+						<div ng-message="required">Biography is requireed</div>
+						<div ng-message="md-maxlength">The name has to be less than 50 characters long.</div>
+					</div>
+					</md-input-container>
+				</div>
+
+				<div class="col-md-8">
 					<md-chips ng-model="teacher.interests" md-removable="true" placeholder="Enter your interests" secondary-placeholder="More interests"></md-chips>
 				</div>
 				
+				<div class="col-md-4">
+					<br>
+					{{-- <md-input-container class="md-block" flex-gt-sm> --}}
+					<md-datepicker ng-model="teacher.date_of_birth" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+					<label>Date Of Birth</label>
+					{{-- </md-input-container> --}}
+				</div> 
 				
 				
 

@@ -21,7 +21,8 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$md
 		last_name: null,
 		email: null,
 		phone_number: null,
-		photo: null,
+        photo: null,
+		photoUpload: null,
 		date_of_birth: null,
 		address: null,
 		interests: [],
@@ -45,9 +46,10 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$md
 			if (response.data.teacher.interests !== null) {
 				$scope.teacher.interests = Object.values(JSON.parse(response.data.teacher.interests))
 			}
-			$scope.teacher.photo = response.data.teacher.photo
+            $scope.teacher.photo = response.data.teacher.photo
+			$scope.teacher.photoUpload = response.data.teacher.photo
 			$scope.teacher.address = response.data.teacher.address
-			$scope.teacher.talent = response.data.teacher.talent
+			$scope.teacher.biography = response.data.teacher.biography
 			$scope.teacher.proficiency = response.data.teacher.proficiency
 			$scope.teacher.comment = response.data.teacher.comment
 			$scope.teacher.date_of_birth = formatMysqlDate(response.data.teacher.date_of_birth)
@@ -73,10 +75,10 @@ app.controller('TeacherAccountController', ['$scope', '$http', '$mdDialog', '$md
                 last_name: $scope.teacher.last_name,
                 email: $scope.teacher.email,
                 phone_number: $scope.teacher.phone_number,
-                photo: $scope.teacher.photo,
+                photo: $scope.teacher.photoUpload,
                 address: $scope.teacher.address,
                 interests: $scope.teacher.interests,
-                talent: $scope.teacher.talent,
+                biography: $scope.teacher.biography,
                 proficiency: $scope.teacher.proficiency,
                 date_of_birth: date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' 00:00:00',
             }
