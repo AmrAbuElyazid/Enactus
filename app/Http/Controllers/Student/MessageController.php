@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
+
+    public function showAllMessagesPage()
+    {
+        $teachersIds = DB::table('messages')->select( DB::raw('DISTINCT(sender_id)') )->where([
+            'sender_type' => 'App\Teacher',
+            'recipient_type' => 'App\Student',
+            'recipient_id' => Auth::guard('student')->user()->id,
+        ])->get();
+
+        $teachers = [];
+        foreach ($teachersIds as $id) {
+            $teachers[] = Teacher::where('id', $id->sender_id)->select('id', 'first_name', 'last_name', 'photo')->get();
+        }
+        return view('student.allmessages', [
+            'teachers' => $teachers,
+        ]);
+    }
+
     public function showMessagesPage(int $id)
     {
         return view('student.message', [
@@ -86,5 +105,10 @@ class MessageController extends Controller
             ]);
     }
 
-
+    public function showUnreadedMessagesPage()
+    {
+        return view('student.unreaded', [
+            'teachers' => Student::getAllUnreededMessagesAndCount()['teachers'],
+        ]);
+    }
 }

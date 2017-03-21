@@ -15,10 +15,6 @@
 @endsection
 @section('scripts')
 <script>
-// window.setInterval(function() {
-//     var elem = document.getElementById('messagesWrapper');
-//         elem.scrollTop = elem.scrollHeight;
-// }, 100000);
 </script>
 <script src="/js/controllers/teacher/TeacherMessageController.js"></script>
 @endsection

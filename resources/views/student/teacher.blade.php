@@ -11,7 +11,7 @@
 				<p>Name: {{ $teacher->first_name }} {{ $teacher->last_name }} </p>
 				<p>Email: <a href="mailto:{{ $teacher->email }}">{{ $teacher->email }}</a></p>
 				<p>Phone Number: {{ $teacher->phone_number }}</p>
-				<p>Interests: @foreach ($interests as $interest) {{ $interest }} @if ($interest != end($interests)) , @endif @endforeach</p>
+				<p>Interests: @if(isset($unterests)) @foreach ($interests as $interest) {{ $interest }} @if ($interest != end($interests)) , @endif @endforeach @else no interests yet @endif</p>
 				<p>Address: {{ $teacher->address }}</p>
 				<p>Proficiency: {{ $teacher->proficiency }}</p>
 				<p>Age: {{ \Carbon\Carbon::parse($teacher->date_of_birth)->diff(\Carbon\Carbon::now())->format('%y years') }}</p>

@@ -20,7 +20,8 @@ trait UploadImage
     protected $allowedFileExtentions = [
         'png',
         'jpg',
-        'gif'
+        'gif',
+        'pdf',
     ];
 
     /**
@@ -49,6 +50,21 @@ trait UploadImage
         }
 
         
+        if ($this->isImageExists($name, $folder)) {
+            return $this->buildAbsoluteFilePath($name, $folder);
+        }
+
+    }
+
+    public function uploadPDF($file, $folder)
+    {
+        if (!$this->isAllowedFile($file)) {
+            return redirect()->back();
+        }
+
+        $name = str_random(32) . '.' . $file->getClientOriginalExtension();
+        Storage::disk('s3')->put($this->buildFilePath($name, $folder), file_get_contents($file->getRealPath()));
+
         if ($this->isImageExists($name, $folder)) {
             return $this->buildAbsoluteFilePath($name, $folder);
         }

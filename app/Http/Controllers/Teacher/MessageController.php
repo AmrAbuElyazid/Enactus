@@ -11,6 +11,25 @@ use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
+
+    public function showAllMessagesPage()
+    {
+        $studentsIds = DB::table('messages')->select( DB::raw('DISTINCT(sender_id)') )->where([
+            'sender_type' => 'App\Student',
+            'recipient_type' => 'App\Teacher',
+            'recipient_id' => Auth::guard('teacher')->user()->id,
+        ])->get();
+
+        $students = [];
+        foreach ($studentsIds as $id) {
+            $students[] = Student::where('id', $id->sender_id)->select('id', 'first_name', 'last_name', 'photo')->get();
+        }
+        return view('teacher.allmessages', [
+            'students' => $students,
+        ]);
+    }
+
+
     public function showMessagesPage(int $id)
     {
         return view('teacher.message', [
@@ -87,5 +106,11 @@ class MessageController extends Controller
             ]);
     }
 
+    public function showUnreadedMessagesPage()
+    {
+        return view('teacher.unreaded', [
+            'students' => Teacher::getAllUnreededMessagesAndCount()['students'],
+        ]);
+    }
 
 }

@@ -7,6 +7,7 @@ use App\Http\Traits\UploadImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class TeacherController extends Controller
 {
@@ -85,5 +86,19 @@ class TeacherController extends Controller
                     'tag' => $tag,
                 ]);
         }
+    }
+
+    public function showCVUploadPage()
+    {
+        return view('teacher.cv');
+    }
+
+    public function UploadCV(Request $request)
+    {
+        Auth::guard('teacher')->user()->update([
+            'cv' => $this->uploadPDF($request->cv, 'cv'),
+        ]);
+        Session::flash('status', 'CV Upload Successfully');
+        return redirect()->back();
     }
 }

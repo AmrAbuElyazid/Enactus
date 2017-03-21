@@ -36,6 +36,8 @@ Route::group(['prefix' => 'teacher'], function () {
         Route::get('/settings', 'Teacher\TeacherController@showAccountSettingsPage')->name('teacher.account.settings');
         Route::get('/settings/get', 'Teacher\TeacherController@getAccountSettings')->name('teacher.get.account.settings');
         Route::patch('/settings/update', 'Teacher\TeacherController@updateAccountSettings')->name('teacher.account.update');
+        Route::get('/cv', 'Teacher\TeacherController@showCVUploadPage');
+        Route::post('/cv', 'Teacher\TeacherController@UploadCV');
 
         Route::get('/get/match/students', 'Teacher\HomeController@getSameInterestsStudents');
         Route::get('/get/student/{id}', 'Teacher\HomeController@getStudentInfoById');
@@ -67,6 +69,10 @@ Route::group(['prefix' => 'teacher'], function () {
         Route::post('/message/{id}', 'Teacher\MessageController@sendMessageToStudent');
         Route::get('/message/unreaded/{id}', 'Teacher\MessageController@getUnreadedMessage');
         Route::get('/message/unread/{id}', 'Teacher\MessageController@setAllMessagesToRead');
+
+        Route::get('/get/unreaded/message/count', 'Teacher\MessageController@getAllUnreededMessagesAndCount');
+        Route::get('/messages', 'Teacher\MessageController@showAllMessagesPage');
+        Route::get('/unreaded', 'Teacher\MessageController@showUnreadedMessagesPage');
 
     });
 
@@ -116,6 +122,9 @@ Route::group(['prefix' => 'student'], function () {
         Route::post('/message/{id}', 'Student\MessageController@sendMessageToTeacher');
         Route::get('/message/unreaded/{id}', 'Student\MessageController@getUnreadedMessage');
         Route::get('/message/unread/{id}', 'Student\MessageController@setAllMessagesToRead');
-        
+
+        Route::get('/get/unreaded/message/count', 'Student\MessageController@getAllUnreededMessagesAndCount');
+        Route::get('/messages', 'Student\MessageController@showAllMessagesPage');
+        Route::get('/unreaded', 'Student\MessageController@showUnreadedMessagesPage');
     });
 });

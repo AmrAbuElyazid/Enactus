@@ -34,9 +34,9 @@
     <header class="cd-main-header">
         <a href="/student/home" class="cd-logo"><img src="/img/cd-logo.svg" alt="Logo"></a>
         
-        <div class="cd-search is-hidden">
+        <div class="is-hidden"> {{-- class cd-search --}}
             <form action="#0">
-                <input type="search" placeholder="Search...">
+                {{-- <input type="search" placeholder="Search..."> --}}
             </form>
         </div> <!-- cd-search -->
 
@@ -44,8 +44,6 @@
 
         <nav class="cd-nav">
             <ul class="cd-top-nav">
-                <li><a href="#0">Tour</a></li>
-                <li><a href="#0">Support</a></li>
                 <li class="has-children account">
                     <a href="#0">
                         <img src="{{ Auth::guard('student')->user()->photo }}" alt="avatar">
@@ -70,26 +68,24 @@
         <nav class="cd-side-nav">
             <ul>
                 <li class="cd-label">Main</li>
-                <li class="has-children overview">
-                    <a href="#0">Overview</a>
+                <li class="has-children messages {{ Request::is('/student/messages') ? 'active' : '' }}">
+                    <a href="#0">Messages <span class="count">{{ \App\Student::getAllUnreededMessagesAndCount()['count'] }}</span></a>
                     
                     <ul>
-                        <li><a href="#0">All Data</a></li>
-                        <li><a href="#0">Category 1</a></li>
-                        <li><a href="#0">Category 2</a></li>
+                        <li><a href="{{ url('/student/messages') }}">All Messages</a></li>
+                        <li><a href="{{ url('/student/unreaded') }}">Unreaded Messages <span class="count">{{ \App\Student::getAllUnreededMessagesAndCount()['count'] }}</span></a></li>
                     </ul>
                 </li>
-                <li class="has-children notifications active">
-                    <a href="#0">Notifications<span class="count">3</span></a>
+                <li class="has-children notifications">
+                    <a href="#">Notifications<span class="count">{{ \App\Student::getAllUnreededMessagesAndCount()['count'] }}</span></a>
                     
                     <ul>
-                        <li><a href="#0">All Notifications</a></li>
-                        <li><a href="#0">Friends</a></li>
-                        <li><a href="#0">Other</a></li>
+                        <li><a href="{{ url('/student/messages') }}">Messages <span class="count">{{ \App\Student::getAllUnreededMessagesAndCount()['count'] }}</span></a></li>
+                        <li><a href="{{ route('requests.pending') }}">Friends</a></li>
                     </ul>
                 </li>
 
-                <li class="has-children">
+                <li class="has-children users">
                     <a href="{{ route('friends') }}">Friends</a>
                     <ul>
                         <li>
@@ -99,51 +95,14 @@
                                 </span>
                             </a>
                         </li>
-                        <li><a href="#0">Pending Friend Requests 
+                        <li><a href="{{ route('requests.pending') }}">Pending Friend Requests 
                             <span class="count">
-                                
                                 {{ Auth::guard('student')->user()->getPendingFriendships()->count() }}
                             </span>
                             </a>
                         </li>
                     </ul>
                 </li>
-            </ul>
-
-            <ul>
-                <li class="cd-label">Secondary</li>
-                <li class="has-children bookmarks">
-                    <a href="#0">Bookmarks</a>
-                    
-                    <ul>
-                        <li><a href="#0">All Bookmarks</a></li>
-                        <li><a href="#0">Edit Bookmark</a></li>
-                        <li><a href="#0">Import Bookmark</a></li>
-                    </ul>
-                </li>
-                <li class="has-children images">
-                    <a href="#0">Images</a>
-                    
-                    <ul>
-                        <li><a href="#0">All Images</a></li>
-                        <li><a href="#0">Edit Image</a></li>
-                    </ul>
-                </li>
-
-                <li class="has-children users">
-                    <a href="#0">Users</a>
-                    
-                    <ul>
-                        <li><a href="#0">All Users</a></li>
-                        <li><a href="#0">Edit User</a></li>
-                        <li><a href="#0">Add User</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <ul>
-                <li class="cd-label">Action</li>
-                <li class="action-btn"><a href="#0">+ Button</a></li>
             </ul>
         </nav>
 
