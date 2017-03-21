@@ -73,7 +73,7 @@ class MessageController extends Controller
 
     public function setAllMessagesToRead(int $id)
     {
-        $message =DB::table('messages')
+        DB::table('messages')
             ->where([
                 'sender_type' => 'App\Teacher',
                 'sender_id' => $id,
@@ -84,7 +84,6 @@ class MessageController extends Controller
                 'sender_read' => 1,
                 'recipient_read' => 1,
             ]);
-            // dd($message);
     }
 
 
