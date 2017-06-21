@@ -35,13 +35,14 @@ app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', '$md
             method: 'GET',
             url: '/student/settings/get',
         }).then(function success(response) {
+            console.log(response)
             $scope.student.first_name = response.data.student.first_name
             $scope.student.last_name = response.data.student.last_name
             $scope.student.email = response.data.student.email
             $scope.student.photo = response.data.student.photo
             $scope.student.phone_number = response.data.student.phone_number
-            if (response.data.student.interests !== null) {
-                $scope.student.interests = Object.values(JSON.parse(response.data.student.interests))            
+            if (response.data.student.interstst) {
+                $scope.student.interests = Object.values(JSON.parse(response.data.student.interstst))
             }
             $scope.student.address = response.data.student.address
             $scope.student.date_of_birth = formatMysqlDate(response.data.student.date_of_birth)
@@ -79,7 +80,7 @@ app.controller('StudentAccountController', ['$scope', '$http', '$mdDialog', '$md
     
             $scope.showAlert();
 
-            }, function error() {
+            }, function error(response) {
             console.log(response);
         });
     };

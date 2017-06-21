@@ -54,7 +54,7 @@ class StudentController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
-            'interests' => json_encode($request->interests, JSON_FORCE_OBJECT),
+            'interstst' => json_encode($request->interests, JSON_FORCE_OBJECT),
             'photo' => $request->photo,
             'address' => $request->address,
             'date_of_birth' => $request->date_of_birth,
